@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dablpdrg1kqf8"]
+
+[ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="1_1cmwl"]
+[ext_resource type="PackedScene" uid="uid://bryw0vhayjf5k" path="res://Scenes/key_label.tscn" id="2_m6mpx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb1po"]
+atlas = ExtResource("1_1cmwl")
+region = Rect2(128, 48, 16, 16)
+
+[node name="sign" type="Node2D" unique_id=714629397]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=201913497]
+texture = SubResource("AtlasTexture_kb1po")
+
+[node name="key_label" parent="." unique_id=1260314633 instance=ExtResource("2_m6mpx")]
+position = Vector2(1, -15)
+key = "e"
