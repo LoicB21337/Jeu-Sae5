@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dablpdrg1kqf8"]
+
+[ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="1_1cmwl"]
+[ext_resource type="Script" uid="uid://bg7jl1f5m6u3k" path="res://Scripts/button.gd" id="1_smycg"]
+[ext_resource type="FontFile" uid="uid://eepaw3y3ynn8" path="res://Assets/PixelOperator8-Bold.ttf" id="2_0kpiu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb1po"]
+atlas = ExtResource("1_1cmwl")
+region = Rect2(128, 48, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb1po"]
+radius = 25.0
+
+[node name="button" type="Node2D" unique_id=714629397]
+script = ExtResource("1_smycg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=201913497]
+texture = SubResource("AtlasTexture_kb1po")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1848949147]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=640739246]
+shape = SubResource("CircleShape2D_kb1po")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=135892801]
+visible = false
+custom_minimum_size = Vector2(8, 8)
+offset_left = -7.0
+offset_top = -19.0
+offset_right = 7.0
+offset_bottom = -6.0
+color = Color(0.12799647, 0.12799647, 0.12799644, 1)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1952746198]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 13.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_0kpiu")
+theme_override_font_sizes/font_size = 10
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
