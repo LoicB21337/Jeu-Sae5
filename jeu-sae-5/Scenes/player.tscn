@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://qtnaxythxvq0"]
 
 [ext_resource type="Script" uid="uid://cucrcud3k7usn" path="res://Scripts/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://cactk14oprcch" path="res://Scenes/pause_menu.tscn" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://ce6ummruin5j3" path="res://Assets/knight.png" id="2_cvnsp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
@@ -177,6 +178,8 @@ collision_layer = 3
 script = ExtResource("1_4flbx")
 SPEED = 150.0
 JUMP_VELOCITY = -350.0
+
+[node name="pause_menu" parent="." unique_id=1423999173 instance=ExtResource("2_6t5aa")]
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=618280600]
 position = Vector2(0, -3)

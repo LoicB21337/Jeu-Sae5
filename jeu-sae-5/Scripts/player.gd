@@ -2,13 +2,17 @@ extends CharacterBody2D
 
 
 @export var SPEED = 300.0
-@export var JUMP_VELOCITY = -400.0
+@export var JUMP_VELOCITY = -300.0
 enum States {IDLE, WALKING, JUMPING}
 var state: States = States.IDLE
 
 signal interact(player: CharacterBody2D)
 
 @onready var sprite: AnimatedSprite2D = $sprite
+@onready var pause_menu: CanvasLayer = $pause_menu
+
+func _ready() -> void:
+	pause_menu.visible = false
 
 func _process(_delta: float) -> void:
 	if state == States.IDLE:
@@ -50,3 +54,10 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		interact.emit(self)
+	if event.is_action_pressed("pause"):
+		if !pause_menu.visible:
+			Engine.time_scale = 0
+			pause_menu.visible = true
+		else:
+			Engine.time_scale = 1
+			pause_menu.visible = false

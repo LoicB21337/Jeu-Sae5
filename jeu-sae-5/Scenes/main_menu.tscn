@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dbtbf4hurm4jc"]
+
+[ext_resource type="FontFile" uid="uid://eepaw3y3ynn8" path="res://Assets/PixelOperator8-Bold.ttf" id="1_28flt"]
+[ext_resource type="Script" uid="uid://cr6l0ityyau2d" path="res://Scripts/main_menu.gd" id="1_48xlc"]
+
+[node name="main_menu" type="Control" unique_id=2053535680]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_48xlc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=846795986]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=552167320]
+layout_mode = 2
+alignment = 1
+
+[node name="play" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1594290636]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../quit")
+focus_neighbor_bottom = NodePath("../setting")
+theme_override_fonts/font = ExtResource("1_28flt")
+theme_override_font_sizes/font_size = 32
+text = "Jouer"
+
+[node name="setting" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=27446376]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../play")
+focus_neighbor_bottom = NodePath("../quit")
+theme_override_fonts/font = ExtResource("1_28flt")
+theme_override_font_sizes/font_size = 32
+text = "Options"
+
+[node name="quit" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1142976239]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../setting")
+focus_neighbor_bottom = NodePath("../play")
+theme_override_fonts/font = ExtResource("1_28flt")
+theme_override_font_sizes/font_size = 32
+text = "Quitter"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

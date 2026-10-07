@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cactk14oprcch"]
+
+[ext_resource type="FontFile" uid="uid://eepaw3y3ynn8" path="res://Assets/PixelOperator8-Bold.ttf" id="1_emv3i"]
+[ext_resource type="Script" uid="uid://dh0ivq5vo0sg8" path="res://Scripts/pause_menu.gd" id="1_k0w1u"]
+
+[node name="pause_menu" type="CanvasLayer" unique_id=1423999173]
+script = ExtResource("1_k0w1u")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2038847844]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=342973208]
+layout_mode = 2
+
+[node name="resume" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2035327793]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../quit")
+focus_neighbor_bottom = NodePath("../setting")
+theme_override_fonts/font = ExtResource("1_emv3i")
+theme_override_font_sizes/font_size = 32
+text = "Reprendre
+"
+
+[node name="setting" type="Button" parent="CenterContainer/VBoxContainer" unique_id=539485912]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../resume")
+focus_neighbor_bottom = NodePath("../quit")
+theme_override_fonts/font = ExtResource("1_emv3i")
+theme_override_font_sizes/font_size = 32
+text = "Options"
+
+[node name="quit" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1245030273]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../setting")
+focus_neighbor_bottom = NodePath("../resume")
+theme_override_fonts/font = ExtResource("1_emv3i")
+theme_override_font_sizes/font_size = 32
+text = "Quitter"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
