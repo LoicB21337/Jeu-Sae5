@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://cucrcud3k7usn" path="res://Scripts/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://cactk14oprcch" path="res://Scenes/pause_menu.tscn" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://ce6ummruin5j3" path="res://Assets/knight.png" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://doejhfgthu4ky" path="res://addons/finite_state_machine/finite_state_machine.gd" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://7c82jv0j10q5" path="res://Scripts/idle.gd" id="5_3smsa"]
+[ext_resource type="Script" uid="uid://bmj2wpt4fsics" path="res://Scripts/walk.gd" id="6_3smsa"]
+[ext_resource type="Script" uid="uid://gbaglf7tx4kk" path="res://Scripts/jump.gd" id="7_3smsa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("2_cvnsp")
@@ -177,7 +181,6 @@ z_index = 1
 collision_layer = 3
 script = ExtResource("1_4flbx")
 SPEED = 150.0
-JUMP_VELOCITY = -350.0
 
 [node name="pause_menu" parent="." unique_id=1423999173 instance=ExtResource("2_6t5aa")]
 
@@ -193,3 +196,20 @@ shape = SubResource("RectangleShape2D_kb1po")
 
 [node name="camera" type="Camera2D" parent="." unique_id=1940234679]
 zoom = Vector2(4, 4)
+
+[node name="FiniteStateMachine" type="Node" parent="." unique_id=565698177 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_fkybt")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://doejhfgthu4ky"
+
+[node name="Idle" type="Node" parent="FiniteStateMachine" unique_id=205388332]
+script = ExtResource("5_3smsa")
+metadata/_custom_type_script = "uid://2y37yx57ooc4"
+
+[node name="Walk" type="Node" parent="FiniteStateMachine" unique_id=1376716701]
+script = ExtResource("6_3smsa")
+metadata/_custom_type_script = "uid://2y37yx57ooc4"
+
+[node name="Jump" type="Node" parent="FiniteStateMachine" unique_id=2125583197]
+script = ExtResource("7_3smsa")
+metadata/_custom_type_script = "uid://2y37yx57ooc4"

@@ -1,17 +1,27 @@
-[gd_scene format=3 uid="uid://dablpdrg1kqf8"]
+[gd_scene format=3 uid="uid://dl345vh4r3psv"]
 
 [ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="1_1cmwl"]
-[ext_resource type="PackedScene" uid="uid://bryw0vhayjf5k" path="res://Scenes/key_label.tscn" id="2_m6mpx"]
+[ext_resource type="PackedScene" uid="uid://bryw0vhayjf5k" path="res://Scenes/interactive_object.tscn" id="1_m6mpx"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kb1po"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqvqy"]
+size = Vector2(68, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c32n"]
 atlas = ExtResource("1_1cmwl")
 region = Rect2(128, 48, 16, 16)
 
-[node name="sign" type="Node2D" unique_id=714629397]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=201913497]
-texture = SubResource("AtlasTexture_kb1po")
-
-[node name="key_label" parent="." unique_id=1260314633 instance=ExtResource("2_m6mpx")]
-position = Vector2(1, -15)
+[node name="sign" unique_id=482481269 instance=ExtResource("1_m6mpx")]
+collision_layer = 0
+collision_mask = 2
 key = "e"
+
+[node name="ColorRect" parent="." index="0" unique_id=11703879]
+offset_top = -23.0
+offset_bottom = -9.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=625750272]
+position = Vector2(1, -9)
+shape = SubResource("RectangleShape2D_hqvqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2" unique_id=1765195331]
+texture = SubResource("AtlasTexture_6c32n")

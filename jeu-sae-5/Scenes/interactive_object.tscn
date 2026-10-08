@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bryw0vhayjf5k"]
+
+[ext_resource type="Script" uid="uid://bncjxne6m51g8" path="res://Scripts/interactive_object.gd" id="1_qf0u0"]
+[ext_resource type="FontFile" uid="uid://eepaw3y3ynn8" path="res://Assets/PixelOperator8-Bold.ttf" id="2_s0jtd"]
+
+[node name="interactive_object" type="Area2D" unique_id=482481269]
+script = ExtResource("1_qf0u0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=11703879]
+z_index = 10
+custom_minimum_size = Vector2(8, 8)
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0.12799647, 0.12799647, 0.12799644, 1)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1662537107]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 14.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_s0jtd")
+theme_override_font_sizes/font_size = 10
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_area_2d_body_exited"]
+[connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]
