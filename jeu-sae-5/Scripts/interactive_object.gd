@@ -5,6 +5,7 @@ class_name Interactive_object
 @onready var label: Label = $ColorRect/Label
 
 var tween: Tween
+var player: Player = null
 @export var key: = ""
 
 
@@ -17,7 +18,10 @@ func _ready() -> void:
 	tween.tween_property(color_rect, "scale", Vector2(0, 1), 0.1)
 
 
-func _on_area_2d_body_entered(_body: Node2D) -> void:
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	player = body
+	if !player.interact.is_connected(_on_player_interact):
+		player.connect("interact", _on_player_interact)
 	color_rect.visible = true
 	tween.stop()
 	tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
@@ -25,6 +29,9 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
+	if player.interact.is_connected(_on_player_interact):
+		player.disconnect("interact", _on_player_interact)
+	player = null
 	tween.stop()
 	tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(color_rect, "scale", Vector2(0, 1), 0.1)
@@ -32,6 +39,5 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 	color_rect.visible = false
 
 
-func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("interact"):
-		action.emit()
+func _on_player_interact(_player: CharacterBody2D) -> void:
+	action.emit()

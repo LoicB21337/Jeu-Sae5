@@ -5,6 +5,6 @@ extends State
 func enter() -> void:
 	sprite.play("jump")
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	if player.is_on_floor():
 		transition("Idle")

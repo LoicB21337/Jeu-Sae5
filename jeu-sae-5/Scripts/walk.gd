@@ -5,8 +5,8 @@ extends State
 func enter() -> void:
 	sprite.play("walk")
 
-func update(delta: float) -> void:
-	if player.velocity.length() == 0:
+func update(_delta: float) -> void:
+	if Input.get_axis("left", "right") == 0:
 		transition("Idle")
 	elif Input.is_action_just_pressed("jump"):
 		transition("Jump")
