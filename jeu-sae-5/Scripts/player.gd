@@ -5,6 +5,8 @@ class_name Player
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -300.0
 
+const PUSH_FORCE = 20
+const MIN_PUSH_FORCE = 15
 
 signal interact(player: CharacterBody2D)
 
@@ -37,6 +39,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			var push_force = (PUSH_FORCE * velocity.length() / SPEED) + MIN_PUSH_FORCE
+			var vector = -c.get_normal() * push_force
+			if vector.y > 0:
+				vector.y = 0
+			c.get_collider().apply_central_impulse(vector)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
