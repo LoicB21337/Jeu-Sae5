@@ -13,6 +13,14 @@ region = Rect2(128, 32, 16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
 size = Vector2(16, 16)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m6c8s"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:linear_velocity")
+properties/1/spawn = false
+properties/1/replication_mode = 1
+
 [node name="cube" type="RigidBody2D" unique_id=1613592960]
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_dt3qw")
@@ -22,3 +30,6 @@ texture = SubResource("AtlasTexture_t2cf1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1031636527]
 shape = SubResource("RectangleShape2D_kb1po")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=818653247]
+replication_config = SubResource("SceneReplicationConfig_m6c8s")

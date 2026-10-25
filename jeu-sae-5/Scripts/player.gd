@@ -4,8 +4,6 @@ class_name Player
 
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -300.0
-
-# Variables envoyées aux autres joueurs (à ajouter dans le panneau Replication)
 @export var sync_position := Vector2.ZERO
 
 const PUSH_FORCE = 20
@@ -20,19 +18,16 @@ signal interact(player: CharacterBody2D)
 func _ready() -> void:
 	pause_menu.visible = false
 	sync_position = position
-	# Seule la caméra du joueur que je contrôle est active chez moi
 	if is_multiplayer_authority():
 		camera.make_current()
 	else:
 		camera.enabled = false
 
 func _enter_tree() -> void:
-	# Le nom du nœud est l'id du joueur : c'est lui qui contrôle ce personnage
 	set_multiplayer_authority(name.to_int())
 
 
 func _process(delta: float) -> void:
-	# Joueur distant : on glisse vers la position reçue au lieu de se téléporter
 	if is_multiplayer_authority():
 		return
 	position = position.lerp(sync_position, 1.0 - exp(-delta * 20.0))
@@ -42,16 +37,11 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 
 	var direction := Input.get_axis("left", "right")
 	if direction:
@@ -64,7 +54,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
-	# Ce qu'on envoie aux autres joueurs
 	sync_position = position
 
 	for i in get_slide_collision_count():
@@ -74,12 +63,21 @@ func _physics_process(delta: float) -> void:
 			var vector = -c.get_normal() * push_force
 			if vector.y > 0:
 				vector.y = 0
-			c.get_collider().apply_central_impulse(vector)
+			_request_push.rpc_id(1, c.get_collider().get_path(), vector)
 
 func _input(event: InputEvent) -> void:
-	# Sans ce test, appuyer sur "interact" le déclencherait aussi
-	# pour le personnage de l'autre joueur
 	if not is_multiplayer_authority():
 		return
 	if event.is_action_pressed("interact"):
 		interact.emit(self)
+
+
+@rpc("any_peer", "call_remote", "unreliable")
+func _request_push(cube_path: NodePath, impulse: Vector2) -> void:
+	if not multiplayer.is_server():
+		return
+	if multiplayer.get_remote_sender_id() != get_multiplayer_authority():
+		return
+	var cube := get_node_or_null(cube_path) as RigidBody2D
+	if cube:
+		cube.apply_central_impulse(impulse.limit_length(200.0))
