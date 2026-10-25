@@ -8,6 +8,7 @@ class_name Player
 
 const PUSH_FORCE = 20
 const MIN_PUSH_FORCE = 15
+var paused := false
 
 signal interact(player: CharacterBody2D)
 
@@ -40,11 +41,11 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not paused:
 		velocity.y = JUMP_VELOCITY
 
 	var direction := Input.get_axis("left", "right")
-	if direction:
+	if direction and not paused:
 		if direction < 0:
 			sprite.flip_h = true
 		else:
@@ -70,6 +71,9 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("interact"):
 		interact.emit(self)
+	if event.is_action_pressed("pause"):
+		paused = not paused
+		pause_menu.visible = not pause_menu.visible
 
 
 @rpc("any_peer", "call_remote", "unreliable")

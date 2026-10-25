@@ -3,7 +3,7 @@ extends SceneTree
 # Lancement : godot --headless -s server.gd
 # Ou avec un port personnalisé : godot --headless -s server.gd -- --port=9000
 
-const DEFAULT_PORT := 7777
+const DEFAULT_PORT := 3000
 const MAX_CLIENTS := 2
 
 var players: Array[int] = []

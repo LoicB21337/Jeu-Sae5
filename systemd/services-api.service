@@ -1,0 +1,15 @@
+[Unit]
+Description=API services (comptes, sessions, scores)
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/services-api
+EnvironmentFile=/home/ubuntu/services-api/.env
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
