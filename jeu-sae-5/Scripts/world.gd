@@ -2,8 +2,10 @@ extends Node2D
 # À attacher au nœud racine "Game" de Game.tscn
 
 const PLAYER_SCENE := preload("res://Scenes/player.tscn")
+const CUBE_SCENE = preload("uid://b4fqnb8sicky2")
 
 @onready var players: Node = $Players
+@onready var cubes: Node2D = $Cubes
 
 
 func _ready() -> void:
@@ -14,7 +16,7 @@ func _ready() -> void:
 
 	multiplayer.peer_connected.connect(_spawn_player)
 	multiplayer.peer_disconnected.connect(_remove_player)
-
+	spawn_cube()
 	# Au cas où des joueurs seraient déjà connectés
 	for id in multiplayer.get_peers():
 		_spawn_player(id)
@@ -31,3 +33,7 @@ func _remove_player(id: int) -> void:
 	var player := players.get_node_or_null(str(id))
 	if player:
 		player.queue_free()
+
+func spawn_cube() -> void:
+	var cube := CUBE_SCENE.instantiate()
+	cubes.add_child(cube)
