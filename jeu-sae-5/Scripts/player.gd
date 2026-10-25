@@ -4,12 +4,11 @@ class_name Player
 
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -300.0
-
-# Variables envoyées aux autres joueurs (à ajouter dans le panneau Replication)
 @export var sync_position := Vector2.ZERO
 
 const PUSH_FORCE = 20
 const MIN_PUSH_FORCE = 15
+var paused := false
 
 signal interact(player: CharacterBody2D)
 
@@ -32,7 +31,6 @@ func _enter_tree() -> void:
 
 
 func _process(delta: float) -> void:
-	# Joueur distant : on glisse vers la position reçue au lieu de se téléporter
 	if is_multiplayer_authority():
 		return
 	position = position.lerp(sync_position, 1.0 - exp(-delta * 20.0))
@@ -45,16 +43,17 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not paused:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 
 	var direction := Input.get_axis("left", "right")
-	if direction:
+	if direction and not paused:
 		if direction < 0:
 			sprite.flip_h = true
 		else:
@@ -63,8 +62,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
-
-	# Ce qu'on envoie aux autres joueurs
+	
+	
 	sync_position = position
 
 	for i in get_slide_collision_count():
@@ -83,3 +82,6 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("interact"):
 		interact.emit(self)
+	if event.is_action_pressed("pause"):
+		paused = not paused
+		pause_menu.visible = not pause_menu.visible

@@ -41,7 +41,7 @@ func _on_room_response(result: int, response_code: int, _headers: PackedStringAr
 			reason = str(data["error"])
 		_fail("Impossible de rejoindre : %s" % reason)
 		return
-
+	Session.room_code = data["code"]
 	status.text = "Salle %s : connexion au serveur de jeu…" % data["code"]
 	_connect_enet(str(data["host"]), int(data["port"]))
 
