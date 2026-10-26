@@ -1,12 +1,14 @@
 extends CanvasLayer
 
 @onready var code: Label = $CenterContainer/VBoxContainer/code
+@onready var player: Player = $".."
 
 func _ready() -> void:
 	code.text = Session.room_code
 
 func _on_resume_pressed() -> void:
 	visible = false
+	player.paused = false
 
 
 func _on_setting_pressed() -> void:

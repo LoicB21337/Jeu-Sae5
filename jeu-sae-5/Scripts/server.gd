@@ -1,7 +1,4 @@
 extends SceneTree
-# Serveur dédié basique (Godot 4.x)
-# Lancement : godot --headless -s server.gd
-# Ou avec un port personnalisé : godot --headless -s server.gd -- --port=9000
 
 const DEFAULT_PORT := 3000
 const MAX_CLIENTS := 2
@@ -19,8 +16,6 @@ func _initialize() -> void:
 		quit(1)
 		return
 
-	# Un script qui étend SceneTree n'a pas de propriété "multiplayer"
-	# (elle existe seulement sur Node) : on passe par get_multiplayer().
 	var mp := get_multiplayer()
 	mp.multiplayer_peer = peer
 	mp.peer_connected.connect(_on_peer_connected)
