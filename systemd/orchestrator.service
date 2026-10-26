@@ -1,0 +1,17 @@
+[Unit]
+Description=Orchestrateur de salles (Node.js + Godot headless)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/orchestrator
+EnvironmentFile=/home/ubuntu/orchestrator/.env
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=3
+# Arrêter le service arrête aussi les instances Godot lancées par Node
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target
