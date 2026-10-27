@@ -1,12 +1,10 @@
 extends Node2D
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _on_pressure_plate_pressed() -> void:
-	sprite.stop()
-	sprite.play("open")
+	animation_player.play("open")
 
 
 func _on_pressure_plate_released() -> void:
-	sprite.stop()
-	sprite.play("close")
+	animation_player.play("close")

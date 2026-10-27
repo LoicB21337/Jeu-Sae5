@@ -214,7 +214,7 @@ tile_set = SubResource("TileSet_kb1po")
 position = Vector2(88, -24)
 
 [node name="gate" parent="." unique_id=1159200271 instance=ExtResource("5_5ukr8")]
-position = Vector2(168, -40)
+position = Vector2(104, -32)
 script = ExtResource("6_5ukr8")
 
 [connection signal="respawn_prop" from="death_zone" to="." method="_on_death_zone_respawn_prop"]
