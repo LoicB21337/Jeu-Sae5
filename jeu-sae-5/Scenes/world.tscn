@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://c24sb2ep7v6fo" path="res://Scripts/world.gd" id="1_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_go701"]
 [ext_resource type="PackedScene" uid="uid://dqnwhj0pmk7cy" path="res://Scenes/death_zone.tscn" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://l8s1kx54tdk7" path="res://Scenes/gate.tscn" id="5_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://brmvcl5nr421f" path="res://Scenes/pressure_plate.tscn" id="5_fo5ed"]
+[ext_resource type="Script" uid="uid://ccau0u02ri65j" path="res://Scripts/test_gate.gd" id="6_5ukr8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t2cf1"]
 
@@ -211,4 +213,10 @@ tile_set = SubResource("TileSet_kb1po")
 [node name="pressure_plate" parent="." unique_id=2096887541 instance=ExtResource("5_fo5ed")]
 position = Vector2(88, -24)
 
+[node name="gate" parent="." unique_id=1159200271 instance=ExtResource("5_5ukr8")]
+position = Vector2(168, -40)
+script = ExtResource("6_5ukr8")
+
 [connection signal="respawn_prop" from="death_zone" to="." method="_on_death_zone_respawn_prop"]
+[connection signal="pressed" from="pressure_plate" to="gate" method="_on_pressure_plate_pressed"]
+[connection signal="released" from="pressure_plate" to="gate" method="_on_pressure_plate_released"]

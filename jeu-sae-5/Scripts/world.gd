@@ -16,7 +16,6 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(_spawn_player)
 	multiplayer.peer_disconnected.connect(_remove_player)
 	_spawn_cube()
-	_spawn_cube()
 	
 	for id in multiplayer.get_peers():
 		_spawn_player(id)

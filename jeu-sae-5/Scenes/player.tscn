@@ -174,7 +174,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
-size = Vector2(14, 18)
+size = Vector2(12, 14)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3smsa"]
 properties/0/path = NodePath(".:position")
@@ -206,6 +206,7 @@ autoplay = "idle"
 frame_progress = 1.0
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=674100256]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_kb1po")
 
 [node name="camera" type="Camera2D" parent="." unique_id=1940234679]
