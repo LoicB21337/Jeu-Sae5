@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dh0ivq5vo0sg8" path="res://Scripts/pause_menu.gd" id="1_k0w1u"]
 
 [node name="pause_menu" type="CanvasLayer" unique_id=1423999173]
-process_mode = 3
 script = ExtResource("1_k0w1u")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=2038847844]
@@ -17,6 +16,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=342973208]
+layout_mode = 2
+
+[node name="code" type="Label" parent="CenterContainer/VBoxContainer" unique_id=708116912]
 layout_mode = 2
 
 [node name="resume" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2035327793]

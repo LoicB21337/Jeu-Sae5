@@ -1,9 +1,14 @@
 extends CanvasLayer
 
+@onready var code: Label = $CenterContainer/VBoxContainer/code
+@onready var player: Player = $".."
+
+func _ready() -> void:
+	code.text = Session.room_code
 
 func _on_resume_pressed() -> void:
-	get_tree().paused = false
 	visible = false
+	player.paused = false
 
 
 func _on_setting_pressed() -> void:
@@ -12,11 +17,3 @@ func _on_setting_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause") and get_tree().paused == true:
-		get_tree().paused = false
-		hide()
-	elif Input.is_action_just_pressed("pause") and get_tree().paused == false:
-		get_tree().paused = true
-		show()

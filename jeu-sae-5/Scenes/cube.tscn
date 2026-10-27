@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="1_m6c8s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dt3qw"]
-friction = 0.5
+friction = 0.7
 bounce = 0.4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2cf1"]
@@ -13,12 +13,24 @@ region = Rect2(128, 32, 16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
 size = Vector2(16, 16)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m6c8s"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = false
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:linear_velocity")
+properties/1/spawn = false
+properties/1/replication_mode = 1
+
 [node name="cube" type="RigidBody2D" unique_id=1613592960]
-collision_layer = 3
+collision_layer = 7
 physics_material_override = SubResource("PhysicsMaterial_dt3qw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2058033013]
+scale = Vector2(0.99999994, 0.99999994)
 texture = SubResource("AtlasTexture_t2cf1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1031636527]
 shape = SubResource("RectangleShape2D_kb1po")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=818653247]
+replication_config = SubResource("SceneReplicationConfig_m6c8s")
