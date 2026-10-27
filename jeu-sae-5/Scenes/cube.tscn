@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="1_m6c8s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dt3qw"]
-friction = 0.5
+friction = 0.7
 bounce = 0.4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2cf1"]
@@ -26,6 +26,7 @@ collision_layer = 7
 physics_material_override = SubResource("PhysicsMaterial_dt3qw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2058033013]
+scale = Vector2(0.99999994, 0.99999994)
 texture = SubResource("AtlasTexture_t2cf1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1031636527]
