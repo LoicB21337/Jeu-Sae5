@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_sl40w"]
 [ext_resource type="PackedScene" uid="uid://b4fqnb8sicky2" path="res://Scenes/cube.tscn" id="3_kiw5n"]
 [ext_resource type="PackedScene" uid="uid://dablpdrg1kqf8" path="res://Scenes/button.tscn" id="4_sl40w"]
+[ext_resource type="PackedScene" uid="uid://qtnaxythxvq0" path="res://Scenes/player.tscn" id="5_sl40w"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f4j70"]
 
@@ -186,7 +187,7 @@ sources/0 = SubResource("TileSetAtlasSource_soqje")
 [node name="level_one_past" type="Node2D" unique_id=592579540]
 
 [node name="death_zone" parent="." unique_id=531814932 instance=ExtResource("1_soqje")]
-position = Vector2(118, 81)
+position = Vector2(244, 50)
 collision_layer = 0
 collision_mask = 4
 
@@ -208,3 +209,7 @@ position = Vector2(520, -167)
 
 [node name="plaque_pression2" parent="." unique_id=1673400605 instance=ExtResource("4_sl40w")]
 position = Vector2(648, -55)
+
+[node name="player" parent="." unique_id=1006911229 instance=ExtResource("5_sl40w")]
+position = Vector2(41, -24)
+collision_layer = 7
