@@ -7,9 +7,10 @@ signal pressed
 signal released
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
-	sprite.stop()
-	sprite.play("pressed")
-	pressed.emit()
+	if len(area_2d.get_overlapping_bodies()) < 2:
+		sprite.stop()
+		sprite.play("pressed")
+		pressed.emit()
 
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:

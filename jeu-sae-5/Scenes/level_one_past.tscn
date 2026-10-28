@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://blkef4600l2nh"]
 
-[ext_resource type="Script" uid="uid://c24sb2ep7v6fo" path="res://Scripts/world.gd" id="1_sl40w"]
+[ext_resource type="Script" uid="uid://c24sb2ep7v6fo" path="res://Scripts/level.gd" id="1_sl40w"]
 [ext_resource type="PackedScene" uid="uid://dqnwhj0pmk7cy" path="res://Scenes/death_zone.tscn" id="1_soqje"]
 [ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_sl40w"]
 [ext_resource type="PackedScene" uid="uid://dablpdrg1kqf8" path="res://Scenes/button.tscn" id="4_sl40w"]

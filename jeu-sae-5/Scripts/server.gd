@@ -7,6 +7,7 @@ var players: Array[int] = []
 
 
 func _initialize() -> void:
+	# A CHANGER !!!!
 	var port := _get_port()
 
 	var peer := ENetMultiplayerPeer.new()
@@ -24,8 +25,8 @@ func _initialize() -> void:
 	print("Serveur démarré sur le port %d (max %d joueurs)" % [port, MAX_CLIENTS])
 
 	# Charge la map si elle existe (même scène que chez les clients)
-	if ResourceLoader.exists("res://Scenes/level_one_past.tscn"):
-		var game: Node = load("res://Scenes/level_one_past.tscn").instantiate()
+	if ResourceLoader.exists("res://Scenes/world.tscn"):
+		var game: Node = load("res://Scenes/world.tscn").instantiate()
 		root.add_child(game)
 
 

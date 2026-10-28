@@ -1,6 +1,6 @@
 extends Node2D
 class_name World
-# À attacher au nœud racine "Game" de Game.tscn
+# À attacher au nœud racine de chaques niveau, puis conecter les signaux
 
 const PLAYER_SCENE := preload("uid://qtnaxythxvq0")
 const CUBE_SCENE = preload("uid://b4fqnb8sicky2")
