@@ -2,9 +2,11 @@ extends CharacterBody2D
 class_name Player
 
 
-@export var SPEED = 300.0
-@export var JUMP_VELOCITY = -300.0
+@export var SPEED = 150.0
+@export var JUMP_VELOCITY = -250.0
 @export var sync_position := Vector2.ZERO
+@export var skin_hote: SpriteFrames
+@export var skin_invite: SpriteFrames
 
 const PUSH_FORCE = 20
 const MIN_PUSH_FORCE = 15
@@ -19,10 +21,19 @@ signal interact(player: CharacterBody2D)
 func _ready() -> void:
 	pause_menu.visible = false
 	sync_position = position
-	if is_multiplayer_authority():
-		camera.make_current()
+
+	# Skin du personnage.
+	if get_multiplayer_authority() == 1:
+		sprite.sprite_frames = skin_hote
 	else:
-		camera.enabled = false
+		sprite.sprite_frames = skin_invite
+
+	# Caméra du joueur local.
+	if camera:
+		camera.enabled = is_multiplayer_authority()
+
+		if is_multiplayer_authority():
+			camera.make_current()
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
