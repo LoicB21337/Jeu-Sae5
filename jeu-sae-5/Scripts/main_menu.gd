@@ -1,66 +1,53 @@
 extends Control
 
-const LOBBY_URL := "http://10.97.0.28:3000"  # IP de la VM "jeu" (affichée par deploy.sh)
+const PORT := 7777
+const MAX_CLIENTS := 2
 
 @onready var play: Button = $HBoxContainer/VBoxContainer/play
 @onready var join: Button = $HBoxContainer/VBoxContainer/join
 @onready var code_input: LineEdit = $HBoxContainer/VBoxContainer/code_input
 @onready var status: Label = $HBoxContainer/VBoxContainer/status
-@onready var http: HTTPRequest = $HTTPRequest
 
 
 func _ready() -> void:
-	# On connecte les signaux une seule fois (et pas à chaque clic)
 	multiplayer.connected_to_server.connect(_on_connected)
 	multiplayer.connection_failed.connect(_on_failed)
-	http.request_completed.connect(_on_room_response)
+	if not play.pressed.is_connected(_on_play_pressed):
+		play.pressed.connect(_on_play_pressed)
+	if not join.pressed.is_connected(_on_join_pressed):
+		join.pressed.connect(_on_join_pressed)
+	status.text = "Local test : Créer (host) ou Rejoindre (127.0.0.1:%d)" % PORT
 
 
 func _on_play_pressed() -> void:
-	_set_busy(true, "Création de la salle…")
-	http.request(LOBBY_URL + "/rooms", ["Content-Type: application/json"], HTTPClient.METHOD_POST, "{}")
+	_set_busy(true, "Création du serveur local...")
+	var peer := ENetMultiplayerPeer.new()
+	var err := peer.create_server(PORT, MAX_CLIENTS)
+	if err != OK:
+		_fail("Impossible de créer le serveur (erreur %d)" % err)
+		return
+	multiplayer.multiplayer_peer = peer
+	status.text = "Serveur lancé sur le port %d. Chargement du niveau..." % PORT
+	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 
 
 func _on_join_pressed() -> void:
-	var code := code_input.text.strip_edges().to_upper()
-	if code.is_empty():
-		status.text = "Saisis un code de salle."
-		return
-	_set_busy(true, "Connexion à la salle %s…" % code)
-	http.request(LOBBY_URL + "/rooms/%s/join" % code, ["Content-Type: application/json"], HTTPClient.METHOD_POST, "{}")
-
-
-func _on_room_response(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	if result != HTTPRequest.RESULT_SUCCESS:
-		_fail("Serveur de lobby injoignable.")
-		return
-	var data = JSON.parse_string(body.get_string_from_utf8())
-	if response_code != 200 or typeof(data) != TYPE_DICTIONARY:
-		var reason := "erreur %d" % response_code
-		if typeof(data) == TYPE_DICTIONARY and data.has("error"):
-			reason = str(data["error"])
-		_fail("Impossible de rejoindre : %s" % reason)
-		return
-	Session.room_code = data["code"]
-	status.text = "Salle %s : connexion au serveur de jeu…" % data["code"]
-	_connect_enet(str(data["host"]), int(data["port"]))
-
-
-func _connect_enet(host: String, port: int) -> void:
+	_set_busy(true, "Connexion au serveur local...")
 	var peer := ENetMultiplayerPeer.new()
-	var err := peer.create_client(host, port)
+	var err := peer.create_client("127.0.0.1", PORT)
 	if err != OK:
-		_fail("Impossible de créer le client (erreur %d)." % err)
+		_fail("Impossible de se connecter (erreur %d)" % err)
 		return
 	multiplayer.multiplayer_peer = peer
+	status.text = "Connexion en cours..."
 
 
 func _on_connected() -> void:
-	get_tree().change_scene_to_file("res://Scenes/level_one_past.tscn")
+	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 
 
 func _on_failed() -> void:
-	_fail("Connexion au serveur de jeu échouée.")
+	_fail("Connexion échouée. Lance d'abord \"Créer une partie\" sur une autre instance.")
 
 
 func _fail(message: String) -> void:
