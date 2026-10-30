@@ -19,6 +19,8 @@ func _ready() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if not body is Player:
+		return
 	player = body
 	if !player.interact.is_connected(_on_player_interact):
 		player.connect("interact", _on_player_interact)
@@ -29,7 +31,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
-	if player.interact.is_connected(_on_player_interact):
+	if player and player.interact.is_connected(_on_player_interact):
 		player.disconnect("interact", _on_player_interact)
 	player = null
 	tween.stop()

@@ -21,6 +21,7 @@ func _ready() -> void:
 	sync_position = position
 	if is_multiplayer_authority():
 		camera.make_current()
+		get_tree().call_group("level", "show_viewport", get_viewport())
 	else:
 		camera.enabled = false
 

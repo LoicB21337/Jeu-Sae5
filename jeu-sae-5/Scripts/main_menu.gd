@@ -57,7 +57,7 @@ func _connect_enet(host: String, port: int) -> void:
 
 func _on_connected() -> void:
 	# A CHANGER !!!!
-	get_tree().change_scene_to_file("res://Scenes/world.tscn")
+	get_tree().change_scene_to_file("res://Scenes/level.tscn")
 
 
 func _on_failed() -> void:
