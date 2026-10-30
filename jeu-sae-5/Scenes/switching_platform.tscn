@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bysqr5gn4ic2v"]
+
+[ext_resource type="Script" uid="uid://kxci2s25asyn" path="res://Scripts/switching_platform.gd" id="1_uiqgj"]
+[ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_we5dw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u35x8"]
+texture = ExtResource("2_we5dw")
+1:2/0 = 0
+7:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kb1po"]
+sources/0 = SubResource("TileSetAtlasSource_u35x8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
+size = Vector2(0, 0)
+
+[node name="switching_platform" type="StaticBody2D" unique_id=833795462]
+collision_layer = 0
+script = ExtResource("1_uiqgj")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=753919235]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0)
+tile_set = SubResource("TileSet_kb1po")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=752962937]
+shape = SubResource("RectangleShape2D_kb1po")
