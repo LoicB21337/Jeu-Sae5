@@ -16,14 +16,9 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(_spawn_player)
 	multiplayer.peer_disconnected.connect(_remove_player)
 	_spawn_cube()
-
-	# Spawn host
-	var host_id := multiplayer.get_unique_id()
-	_spawn_player(host_id)
-
+	
 	for id in multiplayer.get_peers():
-		if id != host_id:
-			_spawn_player(id)
+		_spawn_player(id)
 
 
 func _spawn_player(id: int) -> void:
