@@ -8,6 +8,9 @@ const CUBE_SCENE = preload("uid://b4fqnb8sicky2")
 @onready var players: Node = $Players
 @onready var cubes: Node2D = $Cubes
 
+signal add_flag(flag: String)
+signal remove_flag(flag: String)
+signal update(flag: String)
 
 func _ready() -> void:
 	if not multiplayer.is_server():
@@ -40,3 +43,13 @@ func _on_death_zone_respawn_prop(prop: Node2D) -> void:
 		return
 	if not prop is Player:
 		_spawn_cube()
+
+func _on_flag_changed(flag: String):
+	update.emit(flag)
+ 
+func _send_add_flag(node: String):
+	add_flag.emit(node)
+	owner
+
+func _send_remove_flag(node: String):
+	remove_flag.emit(node)

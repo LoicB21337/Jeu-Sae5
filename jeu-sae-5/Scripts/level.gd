@@ -1,13 +1,13 @@
 extends Control
 class_name Level
-# Scène chargée par le serveur ET par les clients.
-# Elle contient les deux mondes (présent / passé) de chaque niveau.
 
 @onready var present: SubViewport = $presentContainer/present
 @onready var past: SubViewport = $pastContainer/past
 @onready var present_container: SubViewportContainer = $presentContainer
 @onready var past_container: SubViewportContainer = $pastContainer
 
+signal flag_changed(flag: String)
+var flag_list: Array = []
 
 const LEVELS := [
 	["res://Scenes/world_one_present.tscn", "res://Scenes/world_one_past.tscn"],
@@ -16,14 +16,11 @@ const LEVELS := [
 var present_world: Node
 var past_world: Node
 
-# Ids des joueurs, 0 = place libre
 var present_id := 0
 var past_id := 0
 
 
 func _ready() -> void:
-	# Serveur ET clients chargent les mondes : les nœuds (et leurs
-	# MultiplayerSpawner) doivent exister des deux côtés, avec les mêmes noms.
 	present.world_2d = World2D.new()
 	past.world_2d = World2D.new()
 	add_to_group("level")
@@ -49,6 +46,16 @@ func load_level(level: int) -> void:
 	var paths: Array = LEVELS[level]
 	present_world = _add_world(paths[0], "Present")
 	past_world = _add_world(paths[1], "Past")
+	# Flags
+	# PAST
+	flag_changed.connect(past_world._on_flag_changed)
+	past_world.connect("add_flag", _add_flag)
+	past_world.connect("remove_flag", _remove_flag)
+	# PRESENT
+	flag_changed.connect(present_world._on_flag_changed)
+	present_world.connect("add_flag", _add_flag)
+	present_world.connect("remove_flag", _remove_flag)
+	
 
 
 func _add_world(path: String, node_name: String) -> Node:
@@ -60,8 +67,6 @@ func _add_world(path: String, node_name: String) -> Node:
 		present.add_child(world)
 	return world
 
-
-# ---------- Serveur : attribution des joueurs aux mondes ----------
 
 func _on_peer_connected(id: int) -> void:
 	# 1er joueur -> présent, 2e joueur -> passé
@@ -80,3 +85,12 @@ func _on_peer_disconnected(id: int) -> void:
 	elif id == past_id:
 		past_id = 0
 		past_world._remove_player(id)
+
+
+func _add_flag(flag: String):
+	flag_list.append(flag)
+	flag_changed.emit(flag)
+
+func _remove_flag(flag: String):
+	flag_list.pop_at(flag_list.find(flag))
+	flag_changed.emit(flag)

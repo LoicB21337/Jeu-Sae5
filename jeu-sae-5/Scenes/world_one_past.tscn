@@ -216,6 +216,8 @@ spawn_limit = 1
 
 [node name="bouton_apparition_bloc" parent="." unique_id=482481269 instance=ExtResource("4_sl40w")]
 position = Vector2(232, -40)
+flag = "platform_present"
+key = "E"
 
 [node name="plaque_pression" parent="." unique_id=652121548 instance=ExtResource("4_sl40w")]
 position = Vector2(536, -56)

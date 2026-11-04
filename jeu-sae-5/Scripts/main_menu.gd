@@ -1,6 +1,6 @@
 extends Control
 
-const LOBBY_URL := "http://10.97.0.28:3000"  # IP de la VM "jeu" (affichée par deploy.sh)
+const LOBBY_URL := "http://10.97.0.28:3000" # A changer quand on aura le serveur
 
 @onready var play: Button = $HBoxContainer/VBoxContainer/play
 @onready var join: Button = $HBoxContainer/VBoxContainer/join
@@ -10,7 +10,6 @@ const LOBBY_URL := "http://10.97.0.28:3000"  # IP de la VM "jeu" (affichée par 
 
 
 func _ready() -> void:
-	# On connecte les signaux une seule fois (et pas à chaque clic)
 	multiplayer.connected_to_server.connect(_on_connected)
 	multiplayer.connection_failed.connect(_on_failed)
 	http.request_completed.connect(_on_room_response)
