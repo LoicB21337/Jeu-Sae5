@@ -27,13 +27,15 @@ alignment = 1
 
 [node name="code_input" type="LineEdit" parent="HBoxContainer/VBoxContainer" unique_id=1666739442]
 layout_mode = 2
+focus_neighbor_top = NodePath("../quit")
+focus_neighbor_bottom = NodePath("../join")
 theme_override_fonts/font = ExtResource("1_28flt")
 
 [node name="join" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1769495192]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
-focus_neighbor_top = NodePath("../quit")
-focus_neighbor_bottom = NodePath("../setting")
+focus_neighbor_top = NodePath("../code_input")
+focus_neighbor_bottom = NodePath("../play")
 theme_override_fonts/font = ExtResource("1_28flt")
 theme_override_font_sizes/font_size = 32
 text = "Rejoindre"
@@ -49,7 +51,7 @@ autowrap_mode = 3
 [node name="play" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1594290636]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
-focus_neighbor_top = NodePath("../quit")
+focus_neighbor_top = NodePath("../join")
 focus_neighbor_bottom = NodePath("../setting")
 theme_override_fonts/font = ExtResource("1_28flt")
 theme_override_font_sizes/font_size = 32
@@ -68,7 +70,7 @@ text = "Options"
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 focus_neighbor_top = NodePath("../setting")
-focus_neighbor_bottom = NodePath("../play")
+focus_neighbor_bottom = NodePath("../code_input")
 theme_override_fonts/font = ExtResource("1_28flt")
 theme_override_font_sizes/font_size = 32
 text = "Quitter"

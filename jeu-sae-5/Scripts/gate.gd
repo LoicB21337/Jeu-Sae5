@@ -10,17 +10,17 @@ var open:= false
 func _ready() -> void:
 	animation_player.play("close")
 
-func open_gate():
+func open_gate(flag: String):
 	open = true
 	animation_player.play("open")
 
-func close_gate():
+func close_gate(flag: String):
 	open = false
 	animation_player.play("close")
 
-func switch_gate():
+func switch_gate(flag: String):
 	if open:
-		close_gate()
+		close_gate(flag)
 	else:
-		open_gate()
+		open_gate(flag)
 	

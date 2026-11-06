@@ -228,9 +228,5 @@ collision_mask = 0
 flag_id = "platform_present"
 x_lenght = 8
 
-[node name="button" parent="." unique_id=1774239742 instance=ExtResource("3_o8yhn")]
-position = Vector2(120, -24)
-key = "E"
-
+[connection signal="update" from="." to="switching_platform" method="switch_platform"]
 [connection signal="respawn_prop" from="death_zone" to="." method="_on_death_zone_respawn_prop"]
-[connection signal="action" from="button" to="." method="_send_add_flag"]

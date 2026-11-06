@@ -226,3 +226,5 @@ position = Vector2(536, -56)
 position = Vector2(648, -55)
 
 [connection signal="respawn_prop" from="death_zone" to="." method="_on_death_zone_respawn_prop"]
+[connection signal="action" from="bouton_apparition_bloc" to="." method="_send_add_flag"]
+[connection signal="action_over" from="bouton_apparition_bloc" to="." method="_send_remove_flag"]

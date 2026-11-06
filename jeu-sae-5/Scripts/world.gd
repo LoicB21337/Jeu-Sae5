@@ -47,9 +47,8 @@ func _on_death_zone_respawn_prop(prop: Node2D) -> void:
 func _on_flag_changed(flag: String):
 	update.emit(flag)
  
-func _send_add_flag(node: String):
-	add_flag.emit(node)
-	owner
+func _send_add_flag(flag):
+	add_flag.emit(flag)
 
-func _send_remove_flag(node: String):
-	remove_flag.emit(node)
+func _send_remove_flag(flag: String):
+	remove_flag.emit(flag)

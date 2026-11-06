@@ -19,7 +19,7 @@ func _ready() -> void:
 			tile_map.set_cell(Vector2i(x, y), 0, Vector2i(1, 2))
 	modulate = Color("ffffff46")
 
-func turn_to_platform():
+func turn_to_platform(flag: String):
 	solid = true
 	collision_shape.disabled = false
 	modulate = Color("ffffffff")
@@ -28,7 +28,7 @@ func turn_to_platform():
 			tile_map.set_cell(Vector2i(x, y), 0, Vector2i(7, 3))
 
 
-func turn_to_air():
+func turn_to_air(flag: String):
 	solid = false
 	collision_shape.disabled = true
 	modulate = Color("ffffff46")
@@ -36,9 +36,13 @@ func turn_to_air():
 		for y in range(y_lenght):
 			tile_map.set_cell(Vector2i(x, y), 0, Vector2i(1, 2))
 
-func switch_platform():
-	print(solid)
+
+func switch_platform(flag: String):
+	print(flag)
+	if flag != flag_id:
+		return
+	print("ok")
 	if solid:
-		turn_to_air()
+		turn_to_air(flag)
 	else:
-		turn_to_platform()
+		turn_to_platform(flag)

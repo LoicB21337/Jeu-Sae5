@@ -10,6 +10,8 @@ const LOBBY_URL := "http://10.97.0.28:3000" # A changer quand on aura le serveur
 
 
 func _ready() -> void:
+	if Input.get_joy_name(0):
+		play.grab_focus()
 	multiplayer.connected_to_server.connect(_on_connected)
 	multiplayer.connection_failed.connect(_on_failed)
 	http.request_completed.connect(_on_room_response)
