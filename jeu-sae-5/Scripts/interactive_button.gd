@@ -11,5 +11,5 @@ func _on_player_interact(_player: CharacterBody2D) -> void:
 	animation = sprite.animation
 	sprite.stop()
 	sprite.play(animation)
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(3).timeout
 	action_over.emit(flag)

@@ -18,9 +18,11 @@ func close_gate(flag: String):
 	open = false
 	animation_player.play("close")
 
-func switch_gate(flag: String):
-	if open:
-		close_gate(flag)
-	else:
+func switch_gate(flag: String, enabled: bool):
+	if flag != flag_id:
+		return
+	if enabled:
 		open_gate(flag)
+	else:
+		close_gate(flag)
 	
