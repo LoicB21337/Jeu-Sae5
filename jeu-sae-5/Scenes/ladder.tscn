@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cu0opbb4l068g"]
+
+[ext_resource type="Script" uid="uid://b5fjvh0drikji" path="res://Scripts/ladder.gd" id="1_ladder"]
+[ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_tileset"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ladder"]
+texture = ExtResource("2_tileset")
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ladder"]
+sources/0 = SubResource("TileSetAtlasSource_ladder")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ladder"]
+resource_local_to_scene = true
+size = Vector2(16, 72)
+
+[node name="ladder" type="Area2D" unique_id=1315524527]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_ladder")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=452607051]
+position = Vector2(-8, 0)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 12, 0, 3, 0, 0, 0, 0, 0, 254, 255, 0, 0, 10, 0, 3, 0, 0, 0, 0, 0, 253, 255, 0, 0, 10, 0, 3, 0, 0, 0, 0, 0, 252, 255, 0, 0, 11, 0, 3, 0, 0, 0)
+tile_set = SubResource("TileSet_ladder")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2106544734]
+position = Vector2(0, -36)
+shape = SubResource("RectangleShape2D_ladder")

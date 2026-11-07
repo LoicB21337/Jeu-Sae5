@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://7c82jv0j10q5" path="res://Scripts/idle.gd" id="5_3smsa"]
 [ext_resource type="Script" uid="uid://bmj2wpt4fsics" path="res://Scripts/walk.gd" id="6_3smsa"]
 [ext_resource type="Script" uid="uid://gbaglf7tx4kk" path="res://Scripts/jump.gd" id="7_3smsa"]
+[ext_resource type="Script" uid="uid://cv5ur4tpa6d08" path="res://Scripts/climb.gd" id="8_8erm5"]
+[ext_resource type="Script" uid="uid://6fllbl8xy451" path="res://Scripts/falling.gd" id="9_f1ek2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("2_cvnsp")
@@ -176,6 +178,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
 size = Vector2(12, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ladder_detector"]
+size = Vector2(16, 24)
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3smsa"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = false
@@ -209,6 +214,14 @@ frame_progress = 1.0
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_kb1po")
 
+[node name="LadderDetector" type="Area2D" parent="." unique_id=1029384756]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetector" unique_id=1029384757]
+shape = SubResource("RectangleShape2D_ladder_detector")
+
 [node name="camera" type="Camera2D" parent="." unique_id=1940234679]
 zoom = Vector2(4, 4)
 
@@ -216,6 +229,7 @@ zoom = Vector2(4, 4)
 replication_config = SubResource("SceneReplicationConfig_3smsa")
 
 [node name="FiniteStateMachine" type="Node" parent="." unique_id=565698177 node_paths=PackedStringArray("initial_state")]
+process_physics_priority = -1
 script = ExtResource("4_fkybt")
 initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://doejhfgthu4ky"
@@ -231,3 +245,13 @@ metadata/_custom_type_script = "uid://2y37yx57ooc4"
 [node name="Jump" type="Node" parent="FiniteStateMachine" unique_id=2125583197]
 script = ExtResource("7_3smsa")
 metadata/_custom_type_script = "uid://2y37yx57ooc4"
+
+[node name="Climb" type="Node" parent="FiniteStateMachine" unique_id=1543149922]
+script = ExtResource("8_8erm5")
+metadata/_custom_type_script = "uid://2y37yx57ooc4"
+
+[node name="Falling" type="Node" parent="FiniteStateMachine" unique_id=732260820]
+script = ExtResource("9_f1ek2")
+metadata/_custom_type_script = "uid://2y37yx57ooc4"
+
+[connection signal="visibility_changed" from="pause_menu" to="pause_menu" method="_on_visibility_changed"]

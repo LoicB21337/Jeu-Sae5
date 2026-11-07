@@ -22,7 +22,6 @@ func _ready() -> void:
 func _spawn_player(id: int) -> void:
 	var player := PLAYER_SCENE.instantiate()
 	player.name = str(id)
-	player.position = cubes.position
 	players.add_child(player, true)
 
 
@@ -34,7 +33,6 @@ func _remove_player(id: int) -> void:
 
 func _spawn_cube() -> void:
 	var cube := CUBE_SCENE.instantiate()
-	cube.position = cubes.position
 	cubes.add_child(cube, true)
 
 
