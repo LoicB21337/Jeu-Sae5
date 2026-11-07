@@ -21,7 +21,7 @@ Session="*uid://b0fcb2i72r7yn"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [editor_plugins]

@@ -17,10 +17,10 @@ signal interact(player: CharacterBody2D)
 @onready var camera: Camera2D = $camera
 
 func _ready() -> void:
-	pause_menu.visible = false
 	sync_position = position
 	if is_multiplayer_authority():
 		camera.make_current()
+		get_tree().call_group("level", "show_viewport", get_viewport())
 	else:
 		camera.enabled = false
 
@@ -72,8 +72,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		interact.emit(self)
 	if event.is_action_pressed("pause"):
+		pause_menu.visible = not paused
 		paused = not paused
-		pause_menu.visible = not pause_menu.visible
 
 
 @rpc("any_peer", "call_remote", "unreliable")

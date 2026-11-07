@@ -1,6 +1,6 @@
 extends Node2D
 class_name World
-# À attacher au nœud racine "Game" de Game.tscn
+# À attacher au nœud racine de chaques niveau, puis conecter les signaux
 
 const PLAYER_SCENE := preload("uid://qtnaxythxvq0")
 const CUBE_SCENE = preload("uid://b4fqnb8sicky2")
@@ -8,17 +8,15 @@ const CUBE_SCENE = preload("uid://b4fqnb8sicky2")
 @onready var players: Node = $Players
 @onready var cubes: Node2D = $Cubes
 
+signal add_flag(flag: String)
+signal remove_flag(flag: String)
+signal update(flag: String)
 
 func _ready() -> void:
 	if not multiplayer.is_server():
 		return
 
-	multiplayer.peer_connected.connect(_spawn_player)
-	multiplayer.peer_disconnected.connect(_remove_player)
 	_spawn_cube()
-	
-	for id in multiplayer.get_peers():
-		_spawn_player(id)
 
 
 func _spawn_player(id: int) -> void:
@@ -45,3 +43,12 @@ func _on_death_zone_respawn_prop(prop: Node2D) -> void:
 		return
 	if not prop is Player:
 		_spawn_cube()
+
+func _on_flag_changed(flag: String):
+	update.emit(flag)
+ 
+func _send_add_flag(flag):
+	add_flag.emit(flag)
+
+func _send_remove_flag(flag: String):
+	remove_flag.emit(flag)

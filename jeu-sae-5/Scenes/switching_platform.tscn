@@ -12,7 +12,7 @@ texture = ExtResource("2_we5dw")
 sources/0 = SubResource("TileSetAtlasSource_u35x8")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
-size = Vector2(0, 0)
+size = Vector2(16, 16)
 
 [node name="switching_platform" type="StaticBody2D" unique_id=833795462]
 collision_layer = 0
@@ -23,4 +23,5 @@ tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0)
 tile_set = SubResource("TileSet_kb1po")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=752962937]
+position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_kb1po")

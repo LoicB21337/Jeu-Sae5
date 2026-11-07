@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dqnwhj0pmk7cy" path="res://Scenes/death_zone.tscn" id="1_soqje"]
 [ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_sl40w"]
 [ext_resource type="PackedScene" uid="uid://dablpdrg1kqf8" path="res://Scenes/button.tscn" id="4_sl40w"]
+[ext_resource type="PackedScene" uid="uid://brmvcl5nr421f" path="res://Scenes/pressure_plate.tscn" id="5_13ho5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_soqje"]
 texture = ExtResource("2_sl40w")
@@ -216,11 +217,19 @@ spawn_limit = 1
 
 [node name="bouton_apparition_bloc" parent="." unique_id=482481269 instance=ExtResource("4_sl40w")]
 position = Vector2(232, -40)
+flag = "platform_present"
+key = "E"
 
-[node name="plaque_pression" parent="." unique_id=652121548 instance=ExtResource("4_sl40w")]
+[node name="pressure_plate" parent="." unique_id=2096887541 instance=ExtResource("5_13ho5")]
 position = Vector2(536, -56)
 
-[node name="plaque_pression2" parent="." unique_id=1673400605 instance=ExtResource("4_sl40w")]
+[node name="pressure_plate2" parent="." unique_id=1193111383 instance=ExtResource("5_13ho5")]
 position = Vector2(648, -55)
 
 [connection signal="respawn_prop" from="death_zone" to="." method="_on_death_zone_respawn_prop"]
+[connection signal="action" from="bouton_apparition_bloc" to="." method="_send_add_flag"]
+[connection signal="action_over" from="bouton_apparition_bloc" to="." method="_send_remove_flag"]
+[connection signal="pressed" from="pressure_plate" to="." method="_send_add_flag"]
+[connection signal="released" from="pressure_plate" to="." method="_send_remove_flag"]
+[connection signal="pressed" from="pressure_plate2" to="." method="_send_add_flag"]
+[connection signal="released" from="pressure_plate2" to="." method="_send_remove_flag"]

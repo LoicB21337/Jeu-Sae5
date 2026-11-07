@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bryw0vhayjf5k" path="res://Scenes/interactive_object.tscn" id="1_1cmwl"]
 [ext_resource type="Texture2D" uid="uid://bkukbex41rwwi" path="res://Assets/button.png" id="2_0kpiu"]
-[ext_resource type="Script" uid="uid://oeufodwregxd" path="res://Scripts/button_use.gd" id="2_smycg"]
+[ext_resource type="Script" uid="uid://oeufodwregxd" path="res://Scripts/interactive_button.gd" id="2_smycg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_smycg"]
 radius = 45.0
@@ -101,12 +101,9 @@ animations = [{
 [node name="button" unique_id=482481269 instance=ExtResource("1_1cmwl")]
 collision_layer = 0
 collision_mask = 2
-key = "E"
-
-[node name="button_use" type="Node" parent="." index="0" unique_id=1096423699]
 script = ExtResource("2_smycg")
 
-[node name="ColorRect" parent="." index="1" unique_id=11703879]
+[node name="ColorRect" parent="." index="0" unique_id=11703879]
 offset_top = -24.0
 offset_bottom = -10.0
 
@@ -114,12 +111,10 @@ offset_bottom = -10.0
 offset_top = 1.0
 offset_bottom = 15.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=1462217099]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=1462217099]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_smycg")
 
-[node name="sprite" type="AnimatedSprite2D" parent="." index="3" unique_id=1017658751]
+[node name="sprite" type="AnimatedSprite2D" parent="." index="2" unique_id=1017658751]
 sprite_frames = SubResource("SpriteFrames_1cmwl")
 animation = &"down_pressed"
-
-[connection signal="action" from="." to="button_use" method="_on_button_action"]
