@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds4328y35783b"
-path="res://.godot/imported/perso1_jump.png-e8573534d3c98363e4530f98027834cd.ctex"
+uid="uid://bh5gn781cmxjt"
+path="res://.godot/imported/perso1_sheet.png-b783b9045ca048ca114fba7ec7921be9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/perso1_jump.png"
-dest_files=["res://.godot/imported/perso1_jump.png-e8573534d3c98363e4530f98027834cd.ctex"]
+source_file="res://Assets/perso1_sheet.png"
+dest_files=["res://.godot/imported/perso1_sheet.png-b783b9045ca048ca114fba7ec7921be9.ctex"]
 
 [params]
 

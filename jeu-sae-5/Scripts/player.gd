@@ -22,11 +22,6 @@ func _ready() -> void:
 	pause_menu.visible = false
 	sync_position = position
 
-	# Skin du personnage.
-	if get_multiplayer_authority() == 1:
-		sprite.sprite_frames = skin_hote
-	else:
-		sprite.sprite_frames = skin_invite
 
 	# Caméra du joueur local.
 	if camera:
