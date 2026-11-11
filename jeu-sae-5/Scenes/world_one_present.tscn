@@ -7,6 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://bysqr5gn4ic2v" path="res://Scenes/switching_platform.tscn" id="5_mkfap"]
 [ext_resource type="PackedScene" uid="uid://l8s1kx54tdk7" path="res://Scenes/gate.tscn" id="6_0k5yq"]
 [ext_resource type="PackedScene" uid="uid://cu0opbb4l068g" path="res://Scenes/ladder.tscn" id="7_o8yhn"]
+[ext_resource type="PackedScene" uid="uid://dqnwhj0pmk7cy" path="res://Scenes/death_zone.tscn" id="1_i8bpa"]
+[ext_resource type="Texture2D" uid="uid://c5iyq0rqeix2d" path="res://Assets/bg1/bg1ciel.png" id="1_l5a15"]
+[ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_lwcdl"]
+[ext_resource type="Texture2D" uid="uid://d0qeknxolkhkr" path="res://Assets/bg1/bg1soleil.png" id="2_udo2r"]
+[ext_resource type="Texture2D" uid="uid://bl58m7lhkceqg" path="res://Assets/bg1/bg1sol.png" id="3_pc3e2"]
+[ext_resource type="PackedScene" uid="uid://dablpdrg1kqf8" path="res://Scenes/button.tscn" id="3_s58gx"]
+[ext_resource type="Texture2D" uid="uid://bwkorpanpmsfs" path="res://Assets/bg1/bg1montagnes.png" id="4_7gx2s"]
+[ext_resource type="Texture2D" uid="uid://bxhbh88h6j2hm" path="res://Assets/bg1/bg1nuages.png" id="5_rgkug"]
+[ext_resource type="Texture2D" uid="uid://53bap2rdkbo8" path="res://Assets/bg1/bg1arbres.png" id="6_pqk48"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wlaev"]
 
@@ -189,7 +198,79 @@ sources/0 = SubResource("TileSetAtlasSource_l1fq8")
 [node name="level_one_present" type="Node2D" unique_id=2129900378]
 script = ExtResource("1_8g7kl")
 
-[node name="death_zone" parent="." unique_id=531814932 instance=ExtResource("1_mkfap")]
+[node name="background" type="Node2D" parent="." unique_id=1078179469]
+position = Vector2(576, 211)
+
+[node name="ciel" type="Parallax2D" parent="background" unique_id=2124121567]
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 49)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/ciel" unique_id=1347717002]
+texture = ExtResource("1_l5a15")
+
+[node name="soleil" type="Parallax2D" parent="background" unique_id=2052197989]
+scale = Vector2(0.22, 0.22)
+scroll_scale = Vector2(0.1, 0.05)
+scroll_offset = Vector2(0, 35)
+
+[node name="Sprite2D" type="Sprite2D" parent="background/soleil" unique_id=1861916683]
+texture = ExtResource("2_udo2r")
+
+[node name="sol" type="Parallax2D" parent="background" unique_id=1132943737]
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.3, 0.05)
+scroll_offset = Vector2(0, 215)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/sol" unique_id=988059911]
+texture = ExtResource("3_pc3e2")
+
+[node name="montagnes" type="Parallax2D" parent="background" unique_id=1628502797]
+scale = Vector2(0.28, 0.28)
+scroll_scale = Vector2(0.25, 0.05)
+scroll_offset = Vector2(-99.400024, 59)
+repeat_size = Vector2(512, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="background/montagnes" unique_id=1399096996]
+texture = ExtResource("4_7gx2s")
+
+[node name="nuages" type="Parallax2D" parent="background" unique_id=124413349]
+scale = Vector2(0.25, 0.25)
+scroll_scale = Vector2(0.28, 0.05)
+scroll_offset = Vector2(0, 56)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/nuages" unique_id=638335145]
+texture = ExtResource("5_rgkug")
+
+[node name="arbresderriere" type="Parallax2D" parent="background" unique_id=1927896019]
+scale = Vector2(0.22, 0.22)
+scroll_scale = Vector2(0.27, 0.05)
+scroll_offset = Vector2(0, 3)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/arbresderriere" unique_id=209932401]
+position = Vector2(0, 260)
+texture = ExtResource("6_pqk48")
+
+[node name="arbresdevant" type="Parallax2D" parent="background" unique_id=708727116]
+scale = Vector2(0.19, 0.19)
+scroll_scale = Vector2(0.3, 0.05)
+scroll_offset = Vector2(-30, 74)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/arbresdevant" unique_id=874666596]
+texture = ExtResource("6_pqk48")
+
+[node name="death_zone" parent="." unique_id=531814932 instance=ExtResource("1_i8bpa")]
 position = Vector2(246, 80)
 collision_layer = 0
 collision_mask = 4
