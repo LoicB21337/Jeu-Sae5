@@ -4,7 +4,7 @@ extends State
 @onready var sprite: AnimatedSprite2D = $"../../sprite"
 
 func enter() -> void:
-	sprite.play("jump") # ou "fall" si tu ajoutes une animation
+	sprite.play("falling")
 
 func physics_update(delta: float) -> void:
 	if player.paused:

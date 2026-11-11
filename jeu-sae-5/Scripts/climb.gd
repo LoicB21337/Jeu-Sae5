@@ -4,7 +4,7 @@ extends State
 @onready var sprite: AnimatedSprite2D = $"../../sprite"
 
 func enter() -> void:
-	sprite.play("jump") # remplacer par "climb" si l'animation existe
+	sprite.play("climb")
 	player.velocity = Vector2.ZERO
 	var ladder := player.current_ladder()
 	if ladder:
