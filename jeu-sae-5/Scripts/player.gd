@@ -2,11 +2,10 @@ extends CharacterBody2D
 class_name Player
 
 
-@export var SPEED = 150.0
-@export var JUMP_VELOCITY = -250.0
+@export var SPEED = 300.0
+@export var JUMP_VELOCITY = -300.0
+@export var CLIMB_SPEED = 100.0
 @export var sync_position := Vector2.ZERO
-@export var skin_hote: SpriteFrames
-@export var skin_invite: SpriteFrames
 
 const PUSH_FORCE = 20
 const MIN_PUSH_FORCE = 15
@@ -17,18 +16,29 @@ signal interact(player: CharacterBody2D)
 @onready var sprite: AnimatedSprite2D = $sprite
 @onready var pause_menu: CanvasLayer = $pause_menu
 @onready var camera: Camera2D = $camera
+@onready var ladder_detector: Area2D = $LadderDetector
+@onready var finite_state_machine: Node = $FiniteStateMachine
 
 func _ready() -> void:
-	pause_menu.visible = false
 	sync_position = position
+	if is_multiplayer_authority():
+		camera.make_current()
+		get_tree().call_group("level", "show_viewport", get_viewport())
+		finite_state_machine.process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		camera.enabled = false
+		finite_state_machine.process_mode = Node.PROCESS_MODE_DISABLED
 
 
-	# Caméra du joueur local.
-	if camera:
-		camera.enabled = is_multiplayer_authority()
+func can_climb() -> bool:
+	return current_ladder() != null
 
-		if is_multiplayer_authority():
-			camera.make_current()
+
+func current_ladder() -> Ladder:
+	for area in ladder_detector.get_overlapping_areas():
+		if area is Ladder:
+			return area
+	return null
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -40,27 +50,15 @@ func _process(delta: float) -> void:
 	position = position.lerp(sync_position, 1.0 - exp(-delta * 20.0))
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
-
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	if Input.is_action_just_pressed("jump") and is_on_floor() and not paused:
-		velocity.y = JUMP_VELOCITY
-
-	var direction := Input.get_axis("left", "right")
-	if direction and not paused:
-		if direction < 0:
-			sprite.flip_h = true
-		else:
-			sprite.flip_h = false
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if paused:
+		sync_position = position
+		return
+	
 	move_and_slide()
-
+	
 	sync_position = position
 
 	for i in get_slide_collision_count():
@@ -78,8 +76,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		interact.emit(self)
 	if event.is_action_pressed("pause"):
+		pause_menu.visible = not paused
 		paused = not paused
-		pause_menu.visible = not pause_menu.visible
 
 
 @rpc("any_peer", "call_remote", "unreliable")

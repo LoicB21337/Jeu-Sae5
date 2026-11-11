@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://l8s1kx54tdk7"]
 
 [ext_resource type="Texture2D" uid="uid://cjlwpl0htrfla" path="res://Assets/gate.png" id="1_1lkl7"]
+[ext_resource type="Script" uid="uid://dh8ydv1lfqgdd" path="res://Scripts/gate.gd" id="1_hn85u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hn85u"]
 atlas = ExtResource("1_1lkl7")
@@ -358,6 +359,7 @@ _data = {
 
 [node name="gate" type="StaticBody2D" unique_id=535900573]
 collision_mask = 0
+script = ExtResource("1_hn85u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1954548740]
 sprite_frames = SubResource("SpriteFrames_kb1po")
