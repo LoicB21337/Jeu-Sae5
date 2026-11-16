@@ -16,6 +16,9 @@ sources/0 = SubResource("TileSetAtlasSource_ladder")
 resource_local_to_scene = true
 size = Vector2(16, 72)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2cf1"]
+size = Vector2(16, 2)
+
 [node name="ladder" type="Area2D" unique_id=1315524527]
 collision_layer = 8
 collision_mask = 0
@@ -30,3 +33,11 @@ tile_set = SubResource("TileSet_ladder")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2106544734]
 position = Vector2(0, -36)
 shape = SubResource("RectangleShape2D_ladder")
+
+[node name="player_collision" type="StaticBody2D" parent="." unique_id=714584324]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="player_collision" unique_id=1880372160]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_t2cf1")
+one_way_collision = true
+debug_color = Color(0.9292963, 0.21979427, 0.39070988, 0.41960785)

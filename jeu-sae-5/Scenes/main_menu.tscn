@@ -21,7 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_1ehe0")
-expand_mode = 1
+expand_mode = 5
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=846795986]
@@ -42,6 +42,8 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../quit")
 focus_neighbor_bottom = NodePath("../join")
 theme_override_fonts/font = ExtResource("1_28flt")
+placeholder_text = "Entrez le code"
+alignment = 1
 
 [node name="join" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1769495192]
 custom_minimum_size = Vector2(300, 50)
