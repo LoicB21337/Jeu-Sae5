@@ -31,6 +31,10 @@ func get_top_surface_y() -> float:
 	var rect := player_collision_shape.shape as RectangleShape2D
 	return player_collision_shape.global_position.y - rect.size.y * 0.5
 
+# y monde du bas de l'échelle (le sol sur lequel elle repose)
+func get_bottom_y() -> float:
+	return global_position.y
+
 func disable_collision():
 	player_collision_shape.set_deferred("disabled", true)
 

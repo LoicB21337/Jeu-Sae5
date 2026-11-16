@@ -17,6 +17,7 @@ signal interact(player: CharacterBody2D)
 @onready var pause_menu: CanvasLayer = $pause_menu
 @onready var camera: Camera2D = $camera
 @onready var ladder_detector: Area2D = $LadderDetector
+@onready var hitbox: CollisionShape2D = $hitbox
 @onready var finite_state_machine: Node = $FiniteStateMachine
 
 func _ready() -> void:
@@ -39,6 +40,23 @@ func current_ladder() -> Ladder:
 		if area is Ladder:
 			return area
 	return null
+
+func get_feet_offset() -> float:
+	var rect := hitbox.shape as RectangleShape2D
+	return hitbox.position.y + rect.size.y * 0.5
+
+func get_feet_y() -> float:
+	return global_position.y + get_feet_offset()
+
+# Peut-on commencer à monter ? (il reste de la place au-dessus)
+func can_climb_up() -> bool:
+	var ladder := current_ladder()
+	return ladder != null and get_feet_y() > ladder.get_top_surface_y() + 1.0
+
+# Peut-on descendre ? (on est au niveau du haut de l'échelle)
+func can_climb_down() -> bool:
+	var ladder := current_ladder()
+	return ladder != null and get_feet_y() <= ladder.get_top_surface_y() + 1.0
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
