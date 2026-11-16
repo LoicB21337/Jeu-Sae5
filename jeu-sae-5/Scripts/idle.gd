@@ -18,7 +18,10 @@ func physics_update(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		transition("Jump")
 		return
-	if player.can_climb() and Input.is_action_pressed("up"):
+	if Input.is_action_pressed("up") and player.can_climb_up():
+		transition("Climb")
+		return
+	if Input.is_action_pressed("down") and player.can_climb_down():
 		transition("Climb")
 		return
 	if Input.get_axis("left", "right") != 0:

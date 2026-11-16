@@ -16,6 +16,8 @@ func physics_update(delta: float) -> void:
 	if x_direction != 0:
 		sprite.flip_h = x_direction < 0
 		player.velocity.x = x_direction * player.SPEED
+	else:
+		player.velocity.x = move_toward(player.velocity.x, 0, player.SPEED)
 
 	if player.is_on_floor():
 		if x_direction != 0:
@@ -24,5 +26,5 @@ func physics_update(delta: float) -> void:
 			transition("Idle")
 		return
 
-	if player.can_climb() and Input.is_action_pressed("up"):
+	if player.can_climb_up() and Input.is_action_pressed("up"):
 		transition("Climb")

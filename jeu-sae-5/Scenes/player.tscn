@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cactk14oprcch" path="res://Scenes/pause_menu.tscn" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://dep83g14g0u71" path="res://Assets/perso1/perso1_idle.png" id="3_3smsa"]
 [ext_resource type="Texture2D" uid="uid://bq53cwo2mqukq" path="res://Assets/perso1/perso1_fall.png" id="3_pu2lt"]
+[ext_resource type="Texture2D" uid="uid://cmqdskonfc20i" path="res://Assets/perso1/perso1_climbing.png" id="3_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://cfhascig186cn" path="res://Assets/perso1/perso1_jump.png" id="4_f1ek2"]
 [ext_resource type="Script" uid="uid://doejhfgthu4ky" path="res://addons/finite_state_machine/finite_state_machine.gd" id="4_fkybt"]
 [ext_resource type="Script" uid="uid://7c82jv0j10q5" path="res://Scripts/idle.gd" id="5_3smsa"]
@@ -14,8 +15,12 @@
 [ext_resource type="Script" uid="uid://6fllbl8xy451" path="res://Scripts/falling.gd" id="9_f1ek2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bi64h"]
-atlas = ExtResource("4_f1ek2")
+atlas = ExtResource("3_ukyrk")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ijsl"]
+atlas = ExtResource("3_ukyrk")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
 atlas = ExtResource("3_pu2lt")
@@ -78,6 +83,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bi64h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ijsl")
 }],
 "loop": 1,
 "name": &"climb",
@@ -143,14 +151,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
-size = Vector2(12, 14)
+size = Vector2(16, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ladder_detector"]
-size = Vector2(16, 24)
+size = Vector2(16, 28)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3smsa"]
 properties/0/path = NodePath(".:position")
@@ -176,13 +184,12 @@ SPEED = 150.0
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=618280600]
 position = Vector2(0, 1)
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_kb1po")
 animation = &"climb"
 autoplay = "idle"
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=674100256]
-position = Vector2(0, 1)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_kb1po")
 
 [node name="LadderDetector" type="Area2D" parent="." unique_id=1029384756]
@@ -191,7 +198,9 @@ collision_mask = 8
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetector" unique_id=1029384757]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ladder_detector")
+debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="camera" type="Camera2D" parent="." unique_id=1940234679]
 zoom = Vector2(4, 4)

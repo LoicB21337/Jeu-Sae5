@@ -1,26 +1,23 @@
 [gd_scene format=4 uid="uid://mfq0ojd26lyc"]
 
 [ext_resource type="Script" uid="uid://c24sb2ep7v6fo" path="res://Scripts/world.gd" id="1_8g7kl"]
-[ext_resource type="PackedScene" uid="uid://dqnwhj0pmk7cy" path="res://Scenes/death_zone.tscn" id="1_mkfap"]
-[ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_0k5yq"]
-[ext_resource type="PackedScene" uid="uid://brmvcl5nr421f" path="res://Scenes/pressure_plate.tscn" id="4_mkfap"]
-[ext_resource type="PackedScene" uid="uid://bysqr5gn4ic2v" path="res://Scenes/switching_platform.tscn" id="5_mkfap"]
-[ext_resource type="PackedScene" uid="uid://l8s1kx54tdk7" path="res://Scenes/gate.tscn" id="6_0k5yq"]
-[ext_resource type="PackedScene" uid="uid://cu0opbb4l068g" path="res://Scenes/ladder.tscn" id="7_o8yhn"]
 [ext_resource type="PackedScene" uid="uid://dqnwhj0pmk7cy" path="res://Scenes/death_zone.tscn" id="1_i8bpa"]
 [ext_resource type="Texture2D" uid="uid://c5iyq0rqeix2d" path="res://Assets/bg1/bg1ciel.png" id="1_l5a15"]
 [ext_resource type="Texture2D" uid="uid://d22773p4u85x" path="res://Assets/world_tileset.png" id="2_lwcdl"]
 [ext_resource type="Texture2D" uid="uid://d0qeknxolkhkr" path="res://Assets/bg1/bg1soleil.png" id="2_udo2r"]
 [ext_resource type="Texture2D" uid="uid://bl58m7lhkceqg" path="res://Assets/bg1/bg1sol.png" id="3_pc3e2"]
-[ext_resource type="PackedScene" uid="uid://dablpdrg1kqf8" path="res://Scenes/button.tscn" id="3_s58gx"]
 [ext_resource type="Texture2D" uid="uid://bwkorpanpmsfs" path="res://Assets/bg1/bg1montagnes.png" id="4_7gx2s"]
+[ext_resource type="PackedScene" uid="uid://brmvcl5nr421f" path="res://Scenes/pressure_plate.tscn" id="4_mkfap"]
+[ext_resource type="PackedScene" uid="uid://bysqr5gn4ic2v" path="res://Scenes/switching_platform.tscn" id="5_mkfap"]
 [ext_resource type="Texture2D" uid="uid://bxhbh88h6j2hm" path="res://Assets/bg1/bg1nuages.png" id="5_rgkug"]
+[ext_resource type="PackedScene" uid="uid://l8s1kx54tdk7" path="res://Scenes/gate.tscn" id="6_0k5yq"]
 [ext_resource type="Texture2D" uid="uid://53bap2rdkbo8" path="res://Assets/bg1/bg1arbres.png" id="6_pqk48"]
+[ext_resource type="PackedScene" uid="uid://cu0opbb4l068g" path="res://Scenes/ladder.tscn" id="7_o8yhn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wlaev"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l1fq8"]
-texture = ExtResource("2_0k5yq")
+texture = ExtResource("2_lwcdl")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0

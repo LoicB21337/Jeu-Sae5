@@ -21,8 +21,8 @@ Session="*uid://b0fcb2i72r7yn"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [editor_plugins]
 

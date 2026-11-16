@@ -12,10 +12,14 @@ func _ready() -> void:
 
 func open_gate():
 	open = true
+	if animation_player.is_playing():
+		await animation_player.animation_finished
 	animation_player.play("open")
 
 func close_gate():
 	open = false
+	if animation_player.is_playing():
+		await animation_player.animation_finished
 	animation_player.play("close")
 
 func switch_gate(flag: String):
