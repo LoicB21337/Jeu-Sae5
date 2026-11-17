@@ -20,6 +20,9 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:linear_velocity")
 properties/1/spawn = false
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = false
+properties/2/replication_mode = 1
 
 [node name="cube" type="RigidBody2D" unique_id=1613592960]
 collision_layer = 7

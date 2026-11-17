@@ -1,31 +1,62 @@
 extends Node2D
 class_name World
-# À attacher au nœud racine de chaques niveau, puis conecter les signaux
+# À attacher au nœud racine de chaque niveau, puis connecter les signaux.
+# Chaque monde (passé / présent) définit sa propre scène de joueur via `player_scene`.
 
-const PLAYER_SCENE := preload("uid://qtnaxythxvq0")
-const CUBE_SCENE = preload("uid://b4fqnb8sicky2")
+const CUBE_SCENE := preload("uid://b4fqnb8sicky2")
+
+## Scène du joueur propre à ce monde (passé ou présent).
+@export var player_scene: PackedScene
 
 @onready var players: Node = $Players
 @onready var cubes: Node2D = $Cubes
+@onready var player_spawner: MultiplayerSpawner = $PlayerSpawner
 
 signal add_flag(flag: String)
 signal remove_flag(flag: String)
 signal update(flag: String)
 
+
+func _enter_tree() -> void:
+	# Spawn personnalisé : le serveur et les clients exécutent `_create_player`
+	# avec le même id, ce qui garantit une autorité identique des deux côtés.
+	var spawner := get_node_or_null("PlayerSpawner") as MultiplayerSpawner
+	if spawner:
+		spawner.spawn_function = _create_player
+
+
 func _ready() -> void:
 	if not multiplayer.is_server():
 		return
-
 	_spawn_cube()
 
 
 func _spawn_player(id: int) -> void:
-	var player := PLAYER_SCENE.instantiate()
+	if not multiplayer.is_server():
+		return
+	if player_spawner == null or players == null:
+		push_error("World '%s' : PlayerSpawner/Players manquant." % name)
+		return
+	if player_scene == null:
+		push_error("World '%s' : player_scene n'est pas défini." % name)
+		return
+	if players.has_node(str(id)):
+		return
+	player_spawner.spawn(id)
+
+
+# Exécuté sur le serveur et sur chaque client avec le même id.
+func _create_player(id: int) -> Node:
+	var player := player_scene.instantiate()
 	player.name = str(id)
-	players.add_child(player, true)
+	# Autorité réseau explicite et identique sur tous les pairs.
+	player.set_multiplayer_authority(id, true)
+	return player
 
 
 func _remove_player(id: int) -> void:
+	if players == null:
+		return
 	var player := players.get_node_or_null(str(id))
 	if player:
 		player.queue_free()

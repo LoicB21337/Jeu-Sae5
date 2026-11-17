@@ -58,8 +58,8 @@ func can_climb_down() -> bool:
 	var ladder := current_ladder()
 	return ladder != null and get_feet_y() <= ladder.get_top_surface_y() + 1.0
 
-func _enter_tree() -> void:
-	set_multiplayer_authority(name.to_int())
+# L'autorité réseau est attribuée par le World au moment du spawn
+# (voir World._create_player), de façon identique sur tous les pairs.
 
 
 func _process(delta: float) -> void:
