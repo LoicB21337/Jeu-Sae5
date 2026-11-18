@@ -12,9 +12,24 @@ signal flag_removed(flag: String)
 # Autoritaire sur le serveur, miroir local sur les clients.
 var flags: Array = []
 
-const LEVELS := [
-	["res://Scenes/world_one_present.tscn", "res://Scenes/world_one_past.tscn"],
-]
+const LEVEL_PAIRS := {
+	0: [
+		["res://Scenes/world_one_present.tscn", "res://Scenes/world_one_past.tscn"],
+		["res://Scenes/world_one_present.tscn", "res://Scenes/world_one_past.tscn"],
+		["res://Scenes/world_one_present.tscn", "res://Scenes/world_one_past.tscn"],
+		["res://Scenes/world_one_present.tscn", "res://Scenes/world_one_past.tscn"],
+		["res://Scenes/world_one_present.tscn", "res://Scenes/world_one_past.tscn"],
+		["res://Scenes/world_one_present.tscn", "res://Scenes/world_one_past.tscn"],
+	],
+	1: [
+		["res://Scenes/world_two_present.tscn", "res://Scenes/world_two_past.tscn"],
+		["res://Scenes/world_two_present.tscn", "res://Scenes/world_two_past.tscn"],
+		["res://Scenes/world_two_present.tscn", "res://Scenes/world_two_past.tscn"],
+		["res://Scenes/world_two_present.tscn", "res://Scenes/world_two_past.tscn"],
+		["res://Scenes/world_two_present.tscn", "res://Scenes/world_two_past.tscn"],
+		["res://Scenes/world_two_present.tscn", "res://Scenes/world_two_past.tscn"],
+	],
+}
 
 var present_world: Node
 var past_world: Node
@@ -29,7 +44,8 @@ func _ready() -> void:
 	add_to_group("level")
 	present_container.visible = false
 	past_container.visible = false
-	load_level(0)
+	load_pair(LEVEL_PAIRS[Session.selected_world][Session.selected_level])
+	$BackToSelection.pressed.connect(_on_back_to_selection_pressed)
 
 	if multiplayer.is_server():
 		multiplayer.peer_connected.connect(_on_peer_connected)
@@ -45,8 +61,8 @@ func show_viewport(vp: Viewport) -> void:
 	past_container.visible = (vp == past)
 
 
-func load_level(level: int) -> void:
-	var paths: Array = LEVELS[level]
+func load_pair(pairs: Array) -> void:
+	var paths: Array = pairs
 	present_world = _add_world(paths[0], "Present")
 	past_world = _add_world(paths[1], "Past")
 	# Flags
@@ -151,3 +167,7 @@ func _apply_flag(flag: String, added: bool) -> void:
 		flag_added.emit(flag)
 	else:
 		flag_removed.emit(flag)
+
+
+func _on_back_to_selection_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/level_select.tscn")

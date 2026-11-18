@@ -1,0 +1,260 @@
+[gd_scene format=3 uid="uid://dc42aov1hm376"]
+
+[ext_resource type="Script" uid="uid://be4ywbxsl122q" path="res://Scripts/level_select.gd" id="1_lx4vd"]
+[ext_resource type="FontFile" uid="uid://eepaw3y3ynn8" path="res://Assets/PixelOperator8-Bold.ttf" id="3_72w8f"]
+[ext_resource type="Texture2D" uid="uid://bwkorpanpmsfs" path="res://Assets/bg1/bg1montagnes.png" id="5_montagnes"]
+[ext_resource type="Texture2D" uid="uid://53bap2rdkbo8" path="res://Assets/bg1/bg1arbres.png" id="6_arbres"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.06, 0.09, 0.8)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="LevelSelect" type="Control" unique_id=1722480237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lx4vd")
+
+[node name="Background" type="TextureRect" parent="." unique_id=410531807]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_montagnes")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Main" type="VBoxContainer" parent="." unique_id=2071277006]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 30.0
+offset_right = -40.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="WorldBar" type="PanelContainer" parent="Main" unique_id=1478617872]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+
+[node name="WorldTabs" type="HBoxContainer" parent="Main/WorldBar" unique_id=175852100]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="World1" type="Button" parent="Main/WorldBar/WorldTabs" unique_id=416701482]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 28
+text = "Monde 1"
+
+[node name="World2" type="Button" parent="Main/WorldBar/WorldTabs" unique_id=1222887373]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 28
+text = "Monde 2"
+
+[node name="GridCenter" type="CenterContainer" parent="Main" unique_id=179458629]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Grid" type="GridContainer" parent="Main/GridCenter" unique_id=99513542]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="Level1" type="TextureButton" parent="Main/GridCenter/Grid" unique_id=1607454667]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("6_arbres")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Main/GridCenter/Grid/Level1" unique_id=1726085000]
+custom_minimum_size = Vector2(200, 34)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 18
+text = "Niveau 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level2" type="TextureButton" parent="Main/GridCenter/Grid" unique_id=504004708]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("6_arbres")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Main/GridCenter/Grid/Level2" unique_id=1900859949]
+custom_minimum_size = Vector2(200, 34)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 18
+text = "Niveau 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level3" type="TextureButton" parent="Main/GridCenter/Grid" unique_id=2032686970]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("6_arbres")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Main/GridCenter/Grid/Level3" unique_id=1491615091]
+custom_minimum_size = Vector2(200, 34)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 18
+text = "Niveau 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level4" type="TextureButton" parent="Main/GridCenter/Grid" unique_id=1858331903]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("6_arbres")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Main/GridCenter/Grid/Level4" unique_id=956294830]
+custom_minimum_size = Vector2(200, 34)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 18
+text = "Niveau 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level5" type="TextureButton" parent="Main/GridCenter/Grid" unique_id=728024561]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("6_arbres")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Main/GridCenter/Grid/Level5" unique_id=447548025]
+custom_minimum_size = Vector2(200, 34)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 18
+text = "Niveau 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level6" type="TextureButton" parent="Main/GridCenter/Grid" unique_id=1611307410]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("6_arbres")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Main/GridCenter/Grid/Level6" unique_id=741689252]
+custom_minimum_size = Vector2(200, 34)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 18
+text = "Niveau 6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bottom" type="HBoxContainer" parent="Main" unique_id=45205369]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Hint" type="Label" parent="Main/Bottom" unique_id=613752257]
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 20
+text = "Termine le niveau 1 pour débloquer le niveau 2."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Launch" type="Button" parent="Main/Bottom" unique_id=610448803]
+custom_minimum_size = Vector2(200, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 26
+text = "Lancer"
+
+[node name="Back" type="Button" parent="Main/Bottom" unique_id=572564484]
+custom_minimum_size = Vector2(200, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_72w8f")
+theme_override_font_sizes/font_size = 26
+text = "Retour"
