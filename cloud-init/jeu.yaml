@@ -1,0 +1,16 @@
+#cloud-config
+package_update: true
+packages:
+  - nodejs
+  - npm
+  - unzip
+  - curl
+  - ufw
+  - libfontconfig1
+  - libgl1
+  - libx11-6
+  - libxcursor1
+  - libxi6
+  - libxrandr2
+  - libxinerama1
+  - libasound2t64

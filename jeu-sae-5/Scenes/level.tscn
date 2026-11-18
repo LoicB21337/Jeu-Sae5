@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bnkpokf6wbscm"]
+
+[ext_resource type="Script" uid="uid://cojyp5k655b3w" path="res://Scripts/level.gd" id="1_tumq0"]
+
+[node name="level" type="Control" unique_id=1731570751]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_tumq0")
+
+[node name="presentContainer" type="SubViewportContainer" parent="." unique_id=166268662]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="present" type="SubViewport" parent="presentContainer" unique_id=618362090]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="pastContainer" type="SubViewportContainer" parent="." unique_id=230657155]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="past" type="SubViewport" parent="pastContainer" unique_id=1625757009]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
