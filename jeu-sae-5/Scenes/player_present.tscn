@@ -155,7 +155,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
-size = Vector2(16, 28)
+size = Vector2(12, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ladder_detector"]
 size = Vector2(4, 28)

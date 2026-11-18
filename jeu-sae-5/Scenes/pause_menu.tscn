@@ -19,14 +19,13 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=342973208]
 layout_mode = 2
 
-[node name="code" type="Label" parent="CenterContainer/VBoxContainer" unique_id=708116912]
-texture_filter = 1
+[node name="code" type="Button" parent="CenterContainer/VBoxContainer" unique_id=260129727]
 layout_mode = 2
+focus_neighbor_top = NodePath("../quit")
+focus_neighbor_bottom = NodePath("../resume")
 theme_override_fonts/font = ExtResource("1_emv3i")
-theme_override_font_sizes/font_size = 16
-text = "8FB4"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = " "
+icon_alignment = 1
 
 [node name="resume" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2035327793]
 custom_minimum_size = Vector2(300, 50)
@@ -56,6 +55,7 @@ theme_override_fonts/font = ExtResource("1_emv3i")
 theme_override_font_sizes/font_size = 32
 text = "Quitter"
 
+[connection signal="pressed" from="CenterContainer/VBoxContainer/code" to="." method="_on_code_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/setting" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

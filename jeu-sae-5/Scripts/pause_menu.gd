@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var code: Label = $CenterContainer/VBoxContainer/code
+@onready var code: Button = $CenterContainer/VBoxContainer/code
 @onready var resume: Button = $CenterContainer/VBoxContainer/resume
 
 func _ready() -> void:
@@ -24,3 +24,6 @@ func _on_quit_pressed() -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		resume.grab_focus()
+
+func _on_code_pressed() -> void:
+	DisplayServer.clipboard_set(code.text)
