@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://dayhfmlttheqg"]
+
+[ext_resource type="PackedScene" uid="uid://bryw0vhayjf5k" path="res://Scenes/interactive_object.tscn" id="1_6kuia"]
+[ext_resource type="Texture2D" uid="uid://bkc6sempjkqy" path="res://Assets/lever.png" id="2_fhlr4"]
+[ext_resource type="Script" uid="uid://bajwbhmf6rbx6" path="res://Scripts/lever.gd" id="2_jjeqf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb1po"]
+radius = 39.051247
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjeqf"]
+atlas = ExtResource("2_fhlr4")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31g2e"]
+atlas = ExtResource("2_fhlr4")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kuia"]
+atlas = ExtResource("2_fhlr4")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhlr4"]
+atlas = ExtResource("2_fhlr4")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ihno"]
+atlas = ExtResource("2_fhlr4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u0ni"]
+atlas = ExtResource("2_fhlr4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chrb4"]
+atlas = ExtResource("2_fhlr4")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojti0"]
+atlas = ExtResource("2_fhlr4")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t2cf1"]
+animations = [{
+"frames": [{
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_jjeqf")
+}, {
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_31g2e")
+}],
+"loop": 0,
+"name": &"down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_6kuia")
+}, {
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_fhlr4")
+}],
+"loop": 0,
+"name": &"left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_2ihno")
+}, {
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_1u0ni")
+}],
+"loop": 0,
+"name": &"right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_chrb4")
+}, {
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_ojti0")
+}],
+"loop": 0,
+"name": &"up",
+"speed": 10.0
+}]
+
+[node name="lever" unique_id=482481269 instance=ExtResource("1_6kuia")]
+script = ExtResource("2_jjeqf")
+animation = "down"
+key = "E"
+
+[node name="ColorRect" parent="." index="0" unique_id=1981440475]
+offset_top = -24.0
+offset_bottom = -10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="ColorRect" index="0" unique_id=1662537107]
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=457875160]
+shape = SubResource("CircleShape2D_kb1po")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." index="2" unique_id=935558287]
+sprite_frames = SubResource("SpriteFrames_t2cf1")
+animation = &"down"

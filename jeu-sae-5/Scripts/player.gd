@@ -12,6 +12,7 @@ const MIN_PUSH_FORCE = 15
 var paused := false
 
 signal interact(player: CharacterBody2D)
+signal stop_interact(player: CharacterBody2D)
 
 @onready var sprite: AnimatedSprite2D = $sprite
 @onready var pause_menu: CanvasLayer = $pause_menu
@@ -93,6 +94,8 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("interact"):
 		interact.emit(self)
+	if event.is_action_released("interact"):
+		stop_interact.emit(self)
 	if event.is_action_pressed("pause"):
 		pause_menu.visible = not paused
 		paused = not paused

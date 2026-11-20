@@ -52,7 +52,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_iju5o")
 }],
 "loop": 0,
-"name": &"down_pressed",
+"name": &"down",
 "speed": 1.0
 }, {
 "frames": [{
@@ -66,7 +66,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_svtet")
 }],
 "loop": 0,
-"name": &"left_pressed",
+"name": &"left",
 "speed": 1.0
 }, {
 "frames": [{
@@ -80,7 +80,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ur6nl")
 }],
 "loop": 0,
-"name": &"right_pressed",
+"name": &"right",
 "speed": 1.0
 }, {
 "frames": [{
@@ -94,16 +94,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_oxl26")
 }],
 "loop": 0,
-"name": &"up_pressed",
+"name": &"up",
 "speed": 1.0
 }]
 
 [node name="button" unique_id=482481269 instance=ExtResource("1_1cmwl")]
-collision_layer = 0
-collision_mask = 2
 script = ExtResource("2_smycg")
+animation = "down"
+need_pressing = false
 
-[node name="ColorRect" parent="." index="0" unique_id=11703879]
+[node name="ColorRect" parent="." index="0" unique_id=1981440475]
 offset_top = -24.0
 offset_bottom = -10.0
 
@@ -117,4 +117,4 @@ shape = SubResource("CircleShape2D_smycg")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." index="2" unique_id=1017658751]
 sprite_frames = SubResource("SpriteFrames_1cmwl")
-animation = &"down_pressed"
+animation = &"down"
