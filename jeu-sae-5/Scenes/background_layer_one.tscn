@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cbnjavyt7jt2h"]
+
+[ext_resource type="Texture2D" uid="uid://c5iyq0rqeix2d" path="res://Assets/bg1/bg1ciel.png" id="1_46xtp"]
+[ext_resource type="Texture2D" uid="uid://d0qeknxolkhkr" path="res://Assets/bg1/bg1soleil.png" id="2_n77ux"]
+[ext_resource type="Texture2D" uid="uid://bl58m7lhkceqg" path="res://Assets/bg1/bg1sol.png" id="3_vrdcg"]
+[ext_resource type="Texture2D" uid="uid://bwkorpanpmsfs" path="res://Assets/bg1/bg1montagnes.png" id="4_37c0x"]
+[ext_resource type="Texture2D" uid="uid://bxhbh88h6j2hm" path="res://Assets/bg1/bg1nuages.png" id="5_cwyhg"]
+[ext_resource type="Texture2D" uid="uid://53bap2rdkbo8" path="res://Assets/bg1/bg1arbres.png" id="6_21hwy"]
+
+[node name="BackgroundLayer" type="CanvasLayer" unique_id=815459920]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="background" type="Node2D" parent="." unique_id=1920987359]
+position = Vector2(576, 211)
+
+[node name="ciel" type="Parallax2D" parent="background" unique_id=1408914207]
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 49)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/ciel" unique_id=1985470945]
+texture = ExtResource("1_46xtp")
+
+[node name="soleil" type="Parallax2D" parent="background" unique_id=1174212401]
+scale = Vector2(0.22, 0.22)
+scroll_scale = Vector2(0.1, 0.05)
+scroll_offset = Vector2(0, 35)
+
+[node name="Sprite2D" type="Sprite2D" parent="background/soleil" unique_id=933311186]
+texture = ExtResource("2_n77ux")
+
+[node name="sol" type="Parallax2D" parent="background" unique_id=132133375]
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.3, 0.05)
+scroll_offset = Vector2(0, 215)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/sol" unique_id=993602796]
+texture = ExtResource("3_vrdcg")
+
+[node name="montagnes" type="Parallax2D" parent="background" unique_id=1349980025]
+scale = Vector2(0.28, 0.28)
+scroll_scale = Vector2(0.25, 0.05)
+scroll_offset = Vector2(-99.400024, 59)
+repeat_size = Vector2(512, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="background/montagnes" unique_id=782568636]
+texture = ExtResource("4_37c0x")
+
+[node name="nuages" type="Parallax2D" parent="background" unique_id=414474809]
+scale = Vector2(0.25, 0.25)
+scroll_scale = Vector2(0.28, 0.05)
+scroll_offset = Vector2(0, 56)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/nuages" unique_id=1972627745]
+texture = ExtResource("5_cwyhg")
+
+[node name="arbresderriere" type="Parallax2D" parent="background" unique_id=1742922073]
+scale = Vector2(0.22, 0.22)
+scroll_scale = Vector2(0.27, 0.05)
+scroll_offset = Vector2(0, 3)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/arbresderriere" unique_id=2005999770]
+position = Vector2(0, 260)
+texture = ExtResource("6_21hwy")
+
+[node name="arbresdevant" type="Parallax2D" parent="background" unique_id=953134804]
+scale = Vector2(0.19, 0.19)
+scroll_scale = Vector2(0.3, 0.05)
+scroll_offset = Vector2(-30, 74)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="background/arbresdevant" unique_id=965879250]
+texture = ExtResource("6_21hwy")
