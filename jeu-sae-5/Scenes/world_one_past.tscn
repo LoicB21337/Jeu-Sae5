@@ -302,6 +302,7 @@ spawn_limit = 1
 
 [node name="bouton_apparition_bloc" parent="." unique_id=482481269 instance=ExtResource("4_sl40w")]
 position = Vector2(232, -40)
+need_pressing = true
 flag = "platform_present"
 key = "E"
 
