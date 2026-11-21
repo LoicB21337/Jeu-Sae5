@@ -3,6 +3,7 @@ class_name InteractiveButton
 
 @export_enum("up", "down", "left", "right") var animation = "down"
 @export var need_pressing := false
+@export var activation_time := 3
 
 @onready var sprite: AnimatedSprite2D = $sprite
 
@@ -32,7 +33,7 @@ func _on_player_interact(_player: CharacterBody2D) -> void:
 	sprite.stop()
 	if not need_pressing:
 		sprite.play(animation)
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(activation_time).timeout
 	else:
 		sprite.set_frame_and_progress(1,sprite.frame_progress)
 

@@ -102,6 +102,7 @@ animations = [{
 script = ExtResource("2_smycg")
 animation = "down"
 need_pressing = false
+activation_time = 3
 
 [node name="ColorRect" parent="." index="0" unique_id=1981440475]
 offset_top = -24.0
