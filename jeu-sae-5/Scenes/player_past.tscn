@@ -151,7 +151,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1po"]
@@ -183,11 +183,11 @@ SPEED = 150.0
 [node name="pause_menu" parent="." unique_id=1423999173 instance=ExtResource("2_gu8f4")]
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=618280600]
+z_index = 10
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_kb1po")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.13420051
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=674100256]
 position = Vector2(0, 1)

@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://cu0opbb4l068g" path="res://Scenes/ladder.tscn" id="7_o8yhn"]
 [ext_resource type="PackedScene" uid="uid://r82ijdqn1e16" path="res://Scenes/player_present.tscn" id="8_player_present"]
 [ext_resource type="TileSet" uid="uid://b8fk6tko8mu0j" path="res://Assets/world_tileset.tres" id="11_6wiwi"]
+[ext_resource type="PackedScene" uid="uid://b5dwrc5snbae1" path="res://Scenes/start_portal.tscn" id="12_6wiwi"]
+[ext_resource type="PackedScene" uid="uid://b27a58cvhkgca" path="res://Scenes/end_portal.tscn" id="16_nigxp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wlaev"]
 
@@ -276,6 +278,7 @@ tile_set = ExtResource("11_6wiwi")
 
 [node name="pressure_plate2" parent="." unique_id=2096887541 instance=ExtResource("4_mkfap")]
 position = Vector2(536, -56)
+flag = "end_portal_past"
 
 [node name="Cubes" type="Node2D" parent="." unique_id=2093924975]
 position = Vector2(570, -59)
@@ -285,10 +288,11 @@ _spawnable_scenes = PackedStringArray("uid://b4fqnb8sicky2")
 spawn_path = NodePath("../Cubes")
 spawn_limit = 1
 
-[node name="Players" type="Node2D" parent="." unique_id=1423369419]
-position = Vector2(9, -24)
+[node name="Players" parent="." unique_id=595913575 instance=ExtResource("12_6wiwi")]
+position = Vector2(-8, -36)
 
-[node name="PlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=738849853]
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=258679101]
+_spawnable_scenes = PackedStringArray("uid://r82ijdqn1e16")
 spawn_path = NodePath("../Players")
 spawn_limit = 1
 
@@ -306,8 +310,13 @@ flag_id = "gate_present"
 [node name="ladder" parent="." unique_id=1315524527 instance=ExtResource("7_o8yhn")]
 position = Vector2(600, -48)
 
+[node name="end_portal" parent="." unique_id=757848752 instance=ExtResource("16_nigxp")]
+position = Vector2(664, -129)
+flagID = "end_portal_present"
+
 [connection signal="update" from="." to="switching_platform" method="switch_platform"]
 [connection signal="update" from="." to="gate" method="switch_gate"]
+[connection signal="update" from="." to="end_portal" method="switch_portal"]
 [connection signal="respawn_prop" from="death_zone" to="." method="_on_death_zone_respawn_prop"]
 [connection signal="pressed" from="pressure_plate2" to="." method="_send_add_flag"]
 [connection signal="released" from="pressure_plate2" to="." method="_send_remove_flag"]
